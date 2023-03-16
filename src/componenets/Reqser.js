@@ -21,7 +21,7 @@ const Reqser = () => {
         })
         const data = await res.json()
         console.log(data)
-        seruserData({...userData,name:data.name,email:data.email, Phone:data.Phone})
+        seruserData({...userData,namee:data.name,email:data.email, Phone:data.Phone})
     
         if(!res.status === 200 ){
           const error = new Error(res.error)
@@ -74,16 +74,16 @@ const submitform = async()=>{
   return (
   <>
   <Container>
-  <Row className="vh-100 d-flex justify-content-center align-items-center">
+  <Row className="vh-50 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-   <div className="container md-sm mt-5">
+   <div className="container md-sm mt-0">
       <h2 className="mb-3">Request Service</h2>
       <form method='POST'>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
             Name
           </label>
-          <input className="form-control" type="text" id="name" name='name'  autoComplete='off' value={userData.name}  required />
+          <input className="form-control" type="text" id="name" name='name'  autoComplete='off' value={userData.namee}  required />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="email">

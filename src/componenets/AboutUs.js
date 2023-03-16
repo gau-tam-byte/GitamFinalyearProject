@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { Container, Row,Col } from 'react-bootstrap'
 
 
 const AboutUs = () => {
@@ -38,7 +39,11 @@ const AboutUs = () => {
 
   return (
    <>
-   <div className='container emp-profile'>
+
+   <Container>
+   {/* <Row className="vh-100 d-flex justify-content-center align-items-center">
+          <Col md={8} lg={6} xs={12}> */}
+   <div className="container md-sm mt-4">
     <form method="GET">
         <div className='row'> 
             <div className='col-md-4'>
@@ -105,7 +110,12 @@ const AboutUs = () => {
 
         </div>
     </form>
-   </div>
+    </div>
+    {/* </Col>
+    </Row> */}
+
+    </Container>
+   
    </>
   )
 }

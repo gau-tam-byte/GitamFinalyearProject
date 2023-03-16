@@ -8,13 +8,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const Navbarr = () => {
   return (
    <>
-       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" borde className='rounded mt-2 mr-2 ml-2 mb-2'>
       <Container>
-        <Navbar.Brand ><Link className="text-decoration-none text-white" to="/Home">Online Services</Link></Navbar.Brand>
+        <Navbar.Brand ><Link className="text-decoration-none text-white" to="/">Online Services</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link ><Link className="text-decoration-none text-white" to="/Home">About Project</Link></Nav.Link>
+            {/* <Nav.Link ><Link className="text-decoration-none text-white" to="/Home">About Project</Link></Nav.Link> */}
             <Nav.Link ><Link className="text-decoration-none text-white" to="/AboutUs">Profile</Link></Nav.Link>
 
             <Nav.Link ><Link className="text-decoration-none text-white" to="/Reqser">Service Request</Link></Nav.Link>
@@ -35,6 +35,8 @@ const Navbarr = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+  
       
    </>
   )

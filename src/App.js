@@ -10,6 +10,7 @@ import Register from './componenets/Register';
 import Login from './componenets/Login';
 import Reqser from './componenets/Reqser';
 import Logout from './componenets/Logout';
+import Landingpage from './componenets/Landingpage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <Navbarr/>
 
     <Routes>
+      <Route path='/' element={<Landingpage/>}></Route>
       <Route path='/Home' element={<Home/>}></Route>
       <Route path='/AboutUs' element={<AboutUs/>}></Route>
       <Route path='/Register' element={<Register/>}></Route>
