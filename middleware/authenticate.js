@@ -16,11 +16,13 @@ const Authenticatess = (async (req,res,next) =>{
       
     }
     req.token = token;
-    console.log(token)
+    // console.log(token)
     req.rootuser = rootuser;
-    req.userID = rootuser._id
-  
+    req.userID = rootuser._id;
+    req.userRequests = rootuser.Requests;
+
     next()
+    return token
    
   } catch (error) {
     res.status(400).send('Unauthorized User: Please First Login')
