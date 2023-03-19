@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router()
-// const cookieparser = require('cookie-parser');
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
 
 const auth = require('../middleware/authenticate');
+
 
 
   router.post('/register',async (req, res, next) => { 
@@ -50,7 +50,7 @@ const auth = require('../middleware/authenticate');
       let token = await user.generateAuthToken();
       console.log(token)
       res.cookie('jwtoken',token,{
-        expires: new Date(Date.now() + 1000001),
+        expires: new Date(Date.now() + 1000000),
         httpOnly:true
       })
       if (!passwordIsValid) {
@@ -75,34 +75,55 @@ router.get('/getdata',auth,(req,res)=>{
 
 router.post('/Reqser',auth, async (req,res)=>{
   try {
-    const { name, email, Phone, Reqtype, Date ,Description} = req.body
+    const {name, email, Phone, Reqtype, Date ,Time,Description} = req.body
     
-    if ( !name|| !email|| !Phone ||!Reqtype || !Date  || !Description) {
+    if ( !name|| !email|| !Phone ||!Reqtype || !Date  || !Time|| !Description) {
       
       return res.status(422).json({error :" PLease Enter all data"})
     }
   
-   
     const usercontact = await User.findOne({_id : req.userID})
     if(usercontact){
-      await usercontact.addrequest(name,email,Phone,Reqtype,Date,Description);
-      await usercontact.save()
-      return res.status(201).json({message : "Request sent successfully"})
+      const save = await usercontact.addrequest(name,email,Phone,Reqtype,Date,Time,Description);
+      const savedtodb = await usercontact.save()
+      if(!save){
+        return res.status(421).json({error:"Request Not Sent"})
+      }else{
+        return res.status(200).json({message :"Request Sent Successfully!"})
+
+      }
     }    
   } catch(error) {
-    console.log(error)
+    console.log(console.error("Request Not sent!!????"))
   }
 
 })
 
-router.get('/AboutUs',auth,(req,res)=>{
+router.get('/AboutMe',auth,(req,res)=>{
   console.log("hello from about us page")
   res.send(req.rootuser)
 })
 
-
-router.get('/logout',(req,res)=>{
-  res.clearCookie('jwtoken',{path: '/'})
-  res.status(200).send("User Logged out")
+router.get('/UserRequests', auth, (req,res)=>{
+  // try {
+  //   const requests = await User.findOne({_id : req.body._id})   
+  //   if(!requests){
+  //     res.status(400).json({error:"data not came"})
+  //   }else{
+  //     res.send(req.userRequests)
+  //   }
+  //   res.send(requests) 
+  // } catch (error) {
+  //   console.log(error)
+  // }
+  console.log("Hello from all requests pages")
+  res.send(req.userRequests)
 })
+
+
+
+// router.get('/logout',auth,(req,res)=>{
+//   req.clearCookie('jwtoken' , {path: '/'})
+//   res.status(200).send("User Logged out")
+// })
   module.exports = router

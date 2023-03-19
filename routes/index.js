@@ -1,22 +1,75 @@
 const express = require('express')
 const router = express.Router()
-const auth = require('../middleware/authenticate');
-const User = require('../models/user');
+const jwtoken = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const agent = require('../models/agentdb')
+const user = require('../models/user')
+const agentauth = require('../middleware/authagent')
+// const { token } = require('morgan');
+// const { db } = require('../models/user')
 
 
 
+router.post('/agentregister',async (req,res,next)=>{
+  try {
+    const{ name , Phone, NationalID, Profession, Password, cPassword} = req.body;
+    if(!name || !Phone ||!NationalID||!Profession||!Password||!cPassword){
+      return res.status(401).send("Fill all the Required Data")
+    }
 
-router.get('/',(req,res)=>{
-  req.flash("sucess")
-  res.render('Aboutus')
+    const newagent = await new agent(req.body)
+    const agentregister = await newagent.save()
+    if(agentregister){
+      return res.status(201).json({message:"Agent Successfully Register!"})
+    }
+  } catch (error) {
+    return res.status(400).json({error:"Agent Not registered!?"})
+  }
+ 
 })
-router.get('/index', (req, res) => {
-    req.flash('Success');
-    res.render('index')
+
+
+router.post('/agentlogin',async(req,res,next)=>{
+   try {
+    const { name, Password } = req.body
+    if (!name || !Password ) {
+      return res.status(400).json({error:"Please Fill the credentials"})
+      
+    }
+    const Agent = await agent.findOne({ name:name })
+    console.log(req.body.Password)
+    if (Agent) {
+      let passwordIsValid = await bcrypt.compareSync( Password, Agent.Password);
+      let token = await jwtoken.sign({_id:this.id},'jdslkfahsdkfhakhsf32423kjahefkjhasdjlkfhajsdb')
+      console.log(token)
+      res.cookie('agentjwtoken',token,{
+        expires: new Date(Date.now() + 100000),
+        httpOnly:true
+      })
+      if (!passwordIsValid) {
+        return res.status(400).json({error:"Invalid Credentials"})
+       
+      }else{
+       return  res.status(200).json({message:"Agent Login Successfull"})
+      }
+   
+    }
+   } catch (error) {
+    next(error)
+    // console.log(error)
+   }
 })
 
 
+router.get('/Serreqs',agentauth,async(req,res,next)=>{
+ 
+  let userreqdata = user.findOne({})
 
+
+  console.log(userreqdata)
+
+  // console.log("Hello from Service Request page")
+})
 
 
 
