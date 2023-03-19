@@ -21,7 +21,7 @@ const userSchema = new Schema({
     Phone: Number,
     Reqtype: String,
     Date: Date,
-    // Time: String,
+    Time: String,
     Description: String,
    }]
 }, {
