@@ -42,7 +42,7 @@ const  Register = () =>{
     }else if(res.status === 421 || !data) {
       window.alert("Email alredy exists")
     }else{
-      window.alert("sucessfull registration")
+      window.alert("User Registration successfull!")
       console.log('sucessfull registration')
       naviagate("/Login")
     }
@@ -55,7 +55,7 @@ const  Register = () =>{
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-          <div className="border border-2 border-primary"></div>
+          <div className="border rounded border-2 border-warning"></div>
             <Card className="shadow px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
@@ -94,14 +94,14 @@ const  Register = () =>{
 
                       <Form.Group
                         className="mb-3"
-                        controlId="formBasicPassword"
+                        controlId="formBasicpassword"
                       >
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" value={user.password} onChange={handleinputs} placeholder="Password" />
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
-                        controlId="formBasicPassword"
+                        controlId="formBasicconfirmationPassword"
                       >
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control type="password" name="confirmationPassword" value={user.confirmationPassword} onChange={handleinputs} placeholder="Re-Enter Password" />
@@ -112,7 +112,7 @@ const  Register = () =>{
                       >
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit" onClick={postdata}>
+                        <Button variant="warning" type="submit" onClick={postdata}>
                           Create Account
                         </Button>
                       </div>

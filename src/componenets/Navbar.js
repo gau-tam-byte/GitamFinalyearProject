@@ -8,26 +8,35 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const Navbarr = () => {
   return (
    <>
-       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" borde className='rounded mt-2 mr-2 ml-2 mb-2'>
-      <Container>
-        <Navbar.Brand ><Link className="text-decoration-none text-white" to="/">Online Services</Link></Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+       <Navbar collapseOnSelect expand="lg" bg="secondary" variant="light" className='rounded mt-2 mr-2 ml-2 mb-2'>
+        <Container>
+        <Navbar.Brand ><Link className="text-decoration-none text-white pl-2" to="/">Online Services</Link></Navbar.Brand>
+        <Navbar.Toggle aria-expanded="false" aria-controls="responsive-navbar-nav" className='navbar-toggler mr-2'/>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             {/* <Nav.Link ><Link className="text-decoration-none text-white" to="/Home">About Project</Link></Nav.Link> */}
-            <Nav.Link ><Link className="text-decoration-none text-white" to="/AboutUs">Profile</Link></Nav.Link>
+            <Nav.Link ><Link className="text-decoration-none text-white" to="/AboutMe">Profile</Link></Nav.Link>
 
-            <Nav.Link ><Link className="text-decoration-none text-white" to="/Reqser">Service Request</Link></Nav.Link>
+            <Nav.Link ><Link className="text-decoration-none text-white" to="/Reqser">Request Service</Link></Nav.Link>
+            {/* <Nav.Link ><Link className="text-decoration-none text-white" to="/Serreqs">Requested Services</Link></Nav.Link> */}
+
             
           </Nav>
           <Nav>
-            <Nav.Link ><Link className="text-decoration-none text-white active" to="/Login">Login</Link></Nav.Link>
-            <NavDropdown title="Registration" id="collasible-nav-dropdown">
-              <NavDropdown.Item ><Link className="text-decoration-none text-black" to="/Register">User Register</Link></NavDropdown.Item>
+            <NavDropdown title={ <span className="text-danger">Login's</span> }  id="collasible-nav-dropdown">
+              <NavDropdown.Item><Link className="text-decoration-none text-black " to="/Login">User Login</Link></NavDropdown.Item>
+              <NavDropdown.Divider/>
+              <NavDropdown.Item><Link className="text-decoration-none text-black" to="/AgentLogin">Agent Login</Link></NavDropdown.Item>
+            </NavDropdown>
+            {/* <Nav.Link ></Nav.Link> */}
+            <NavDropdown title={ <span className="text-warning">Registration's</span> }  id="collasible-nav-dropdown">
+              <NavDropdown.Item><Link className="text-decoration-none text-black " to="/Register">User Register</Link></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item >
-              <Link className="text-decoration-none text-black" to="#">Agent Register</Link>
+              <Link className="text-decoration-none text-black" to="/AgentRegister">Agent Register</Link>
               </NavDropdown.Item>
+              {/* <NavDropdown.Item >
+              </NavDropdown.Item> */}
             </NavDropdown>
             <Nav.Link ><Link className="text-decoration-none text-white" to="/Logout">Logout</Link></Nav.Link>
 

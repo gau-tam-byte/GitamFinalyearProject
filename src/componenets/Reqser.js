@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const Reqser = () => {
   const navigates = useNavigate();
-  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"",Description:""})
+  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:""})
 
   const callreqserpage = async ()=>{
 
@@ -21,7 +21,7 @@ const Reqser = () => {
         })
         const data = await res.json()
         console.log(data)
-        seruserData({...userData,namee:data.name,email:data.email, Phone:data.Phone})
+        seruserData({...userData,name:data.name,email:data.email,Phone:data.Phone})
     
         if(!res.status === 200 ){
           const error = new Error(res.error)
@@ -45,7 +45,7 @@ const Reqser = () => {
 
 const submitform = async()=>{
 
-  const {name,email,Phone,Reqtype,Date,Description} = userData;
+  const {name,email,Phone,Reqtype,Date,Time,Description} = userData;
 
   const res = await fetch('/Reqser',{
     method:"POST",
@@ -53,14 +53,14 @@ const submitform = async()=>{
       "Content-Type ": "application/json"
     },
     body: JSON.stringify({
-      name,email,Phone,Reqtype,Date,Description
+      name,email,Phone,Reqtype,Date,Time,Description
     })
 
   })
   const data = await res.json();
-  if(res.status === 201 || !data){
+  if(res.status === 200){
     window.alert("Request Sent")
-    seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Description:""})
+    seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:""})
     navigates('/Reqser')
   }else if(res.status === 422 || !data){
     window.alert("plzz Fill the Data")
@@ -77,32 +77,32 @@ const submitform = async()=>{
   <Row className="vh-50 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
    <div className="container md-sm mt-0">
-      <h2 className="mb-3">Request Service</h2>
+      <h2 className="mb-3" >REQUEST Service</h2>
       <form method='POST'>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
             Name
           </label>
-          <input className="form-control" type="text" id="name" name='name'  autoComplete='off' value={userData.namee}  required />
+          <input className="form-control" type="text" id="name" name='name' readOnly autoComplete='off' defaultValue={userData.name}  required />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="email">
             Email
           </label>
-          <input className="form-control" type="email" id="email" name="email" autoComplete='off' value={userData.email}  required />
+          <input className="form-control" type="email" id="email" name="email" readOnly autoComplete='off' defaultValue={userData.email}  required />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="Phone">
             Phone
           </label>
-          <input className="form-control" type="number" id="Phone" name="Phone" autoComplete='off' value={userData.Phone}  required />
+          <input className="form-control" type="number" id="Phone" name="Phone" readOnly autoComplete='off' defaultValue={userData.Phone}  required />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="Reqtype">
             Request Type
           </label>
           <select className="form-control" name="Reqtype" id="Reqtype"  onChange={handleinputs} required >
-              <option value=""> Please choose an option ⤵️</option>
+              <option value="">Please choose an option🔻</option>
               <option value="AC Technician">AC Service</option>
               <option value="Electrician">Electricity Service</option>
               <option value="Plumber">Plumbing Service</option>
@@ -116,21 +116,21 @@ const submitform = async()=>{
           <label className="form-label" htmlFor="email">
             Date
           </label>
-          <input className="form-control" type="datetime-local" id="Date" name="Date" autoComplete='off' value={userData.Date} onChange={handleinputs} required />
+          <input className="form-control" type="date" id="Date" name="Date" autoComplete='off' value={userData.Date} onChange={handleinputs} required />
         </div>
-        {/* <div className="mb-3">
+        <div className="mb-3">
           <label className="form-label" htmlFor="email">
             Time
           </label>
           <input className="form-control" type="time" id="Time" name="Time" autoComplete='off' value={userData.Time} onChange={handleinputs} required />
-        </div> */}
+        </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="message">
             Description
           </label>
           <textarea className="form-control" id="message"  name="Description"  autoComplete='off' value={userData.Description} onChange={handleinputs} required />
         </div>
-        <button className="btn btn-info" type="submit" onClick={submitform}>
+        <button className="btn btn-success" type="submit" onClick={submitform}>
           Send Request
         </button>
       </form>

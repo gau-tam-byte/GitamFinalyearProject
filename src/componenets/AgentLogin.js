@@ -1,74 +1,70 @@
-import { useState } from 'react';
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import React from 'react'
 import {  useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
-const Login = () => {
-  const naviagatee = useNavigate();
-  const [ user, setUser ] = useState({
-    email :"", password:""
-  })
+import { useState } from 'react';
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
-  const handleinputss = (e) =>{
+function AgentLogin() {
+  const naviagatee = useNavigate();
+ const [agent, setagent] = useState({name:"",Password:""})
+
+  const handleinputsss = (e) =>{
     console.log(e)
       
     let name, value
     name = e.target.name;
     value = e.target.value;
 
-    setUser({...user,[name]:value})
+    setagent({...agent,[name]:value})
   }
 
-  const verifydata = async (e) =>{
+  const verifyagentdata = async (e) =>{
     e.preventDefault()
 
-    const {  email, password } = user
-    let  res = await fetch('/login',{
+    const { name, Password } = agent
+    let res = await fetch('/agentlogin',{
       method : "POST",
       headers :{
            "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email, password, 
+        name, Password, 
       })
     })
     const data = await res.json();
 
     if(res.status === 400 || !data){
-      window.alert("unSuccess Login/Invalid Credentials")
+      window.alert("unSuccess Login/ Invalid Credentials")
       console.log('unSucess Login')
       naviagatee('/Login')
     }else{
-      window.alert("User Login successfull!")
-      console.log('sucessfull Login')
-      naviagatee("/Reqser")
+      window.alert("Login successfull!")
+      console.log('Login successfull!')
+      naviagatee("/Serreqs")
     }
     
 
-  } 
-
-
+  }
   return (
-  <>
-  <div>
+    <>
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-            <div className="border rounded border-2 border-primary"></div>
+            <div className="border rounded border-2 border-dark"></div>
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
                   <h2 className="fw-bold mb-2 text-uppercase ">Login</h2>
-                  <p className=" mb-5">Please enter your email and password!</p>
+                  <p className=" mb-5">Please enter your Phone and password to Login!</p>
                   <div className="mb-3">
                     <Form method='POST'>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
-                          Email address
+                          Name
                         </Form.Label>
-                        <Form.Control type="email" name="email" onChangeCapture={handleinputss} defaultValue={user.email} placeholder="Enter email" />
+                        <Form.Control type="text" name="name" onChangeCapture={handleinputsss} defaultValue={agent.name} placeholder="Enter Name" />
                         <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
+          We'll never share your Name with anyone else.
         </Form.Text>
                       </Form.Group>
 
@@ -77,7 +73,7 @@ const Login = () => {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password"  name="password" onChangeCapture={handleinputss} defaultValue={user.password} placeholder="Password" />
+                        <Form.Control type="password"  name="Password" onChangeCapture={handleinputsss} defaultValue={agent.Password} placeholder="Password" />
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           <Form.Check type="checkbox" label="Check me In" />
@@ -93,7 +89,7 @@ const Login = () => {
                         </p>
                       </Form.Group> */}
                       <div className="d-grid">
-                        <Button variant="primary" type="submit" onClick={verifydata}>
+                        <Button variant="dark" type="submit" onClick={verifyagentdata}>
                           Login
                         </Button>
                       </div>
@@ -101,7 +97,7 @@ const Login = () => {
                     <div className="mt-3">
                     <p className="mb-0  text-center">
                       Don't have an account??{" "}
-                        <Link to="/Register" className="text-warning fw-bold">Sign Up</Link>
+                        <Link to="/AgentRegister" className="text-danger fw-bold">Agent Sign Up</Link>
                       </p>
                     </div>
                   </div>
@@ -111,11 +107,8 @@ const Login = () => {
           </Col>
         </Row>
       </Container>
-    </div>         
     </>
-   
-  
   )
 }
 
-export default Login
+export default AgentLogin
