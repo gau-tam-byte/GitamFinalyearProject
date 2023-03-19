@@ -19,10 +19,10 @@ app.use(express.json());
 app.use(cookieparser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
-  cookie: { maxAge: 1000001 },
+  cookie: { maxAge: 1000000 },
   secret: 'connect.sid',
   saveUninitialized: true,
-  resave: true,
+  resave: false,
 }));
 
 app.use(passport.initialize())
@@ -32,7 +32,6 @@ app.use(passport.session())
 
 
 app.use('/',require('./routes/index'))
-
 app.use('/',require('./routes/users'))
 
 
