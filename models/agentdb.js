@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const agentSchema = mongoose.Schema
 const bcrypt = require('bcryptjs')
+const jwtoken = require('jsonwebtoken')
+
 const agentdb = new agentSchema({
   name: String,
   Phone: Number,
@@ -8,6 +10,9 @@ const agentdb = new agentSchema({
   Profession: String,
   Password: String,
   cPassword: String,
+  Tokens:[{
+    token: String
+  }]
 },{
   // 3 
   timestamps: {
@@ -21,6 +26,19 @@ agentdb.pre('save', async function (next){
     this.cPassword = await bcrypt.hash(this.cPassword,12)
   }
 })
+
+agentdb.methods.genagentauthtoken = async function(){
+  try {
+    let token = await jwtoken.sign({_id: this.id},'jdslkfahsdkfhakhsf32423kjahefkjhasdjlkfhajsdb')
+    this.Tokens = this.Tokens.concat({token:token})
+    await this.save()
+    return token
+
+  } catch (error) {
+    console.log(error)
+  }
+
+}
 
 const agent = mongoose.model('agent',agentdb)
 

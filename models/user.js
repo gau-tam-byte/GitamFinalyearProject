@@ -20,7 +20,7 @@ const userSchema = new Schema({
     email: String,
     Phone: Number,
     Reqtype: String,
-    Date: Date,
+    Date: String,
     Time: String,
     Description: String,
    }]
