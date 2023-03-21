@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const jwtoken = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const agent = require('../models/agentdb')
 const user = require('../models/user')
@@ -40,10 +39,10 @@ router.post('/agentlogin',async(req,res,next)=>{
     console.log(req.body.Password)
     if (Agent) {
       let passwordIsValid = await bcrypt.compareSync( Password, Agent.Password);
-      let token = await jwtoken.sign({_id:this.id},'jdslkfahsdkfhakhsf32423kjahefkjhasdjlkfhajsdb')
+      const token = await Agent.genagentauthtoken()
       console.log(token)
       res.cookie('agentjwtoken',token,{
-        expires: new Date(Date.now() + 100000),
+        expires: new Date(Date.now() + 1000000),
         httpOnly:true
       })
       if (!passwordIsValid) {
@@ -61,16 +60,26 @@ router.post('/agentlogin',async(req,res,next)=>{
 })
 
 
-router.get('/Serreqs',agentauth,async(req,res,next)=>{
+router.get('/Serreqs',agentauth,(req,res)=>{
  
-  let userreqdata = user.findOne({})
+  // let userreqdata = user.findOne({})
 
-
-  console.log(userreqdata)
+  res.send(req.userRoot)
+  res.status(400).send({error:"PLease login"})
+  // res.send("login first")
+  // res.send(req.userProtype)
+  // console.log(userreqdata)
 
   // console.log("Hello from Service Request page")
 })
 
+router.get('/AboutAgent',agentauth,(req,res)=>{
+  res.send(req.AgentData)
+})
+
+router.get('/ReqofuserRequests',agentauth,(req,res)=>{
+  res.send(req.uerreqs)
+})
 
 
 

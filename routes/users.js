@@ -122,8 +122,8 @@ router.get('/UserRequests', auth, (req,res)=>{
 
 
 
-// router.get('/logout',auth,(req,res)=>{
-//   req.clearCookie('jwtoken' , {path: '/'})
-//   res.status(200).send("User Logged out")
-// })
+router.get('/logout',(req,res)=>{
+  req.clearCookie(agentjwtoken,{path: '/'})
+  res.status(200).send("User Logged out")
+})
   module.exports = router
