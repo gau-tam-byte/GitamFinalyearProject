@@ -39,40 +39,34 @@ const AboutMe = () => {
   return (
    <>
 
-   <Container>
-   {/* <Row className="vh-100 d-flex justify-content-center align-items-center">
-          <Col md={8} lg={6} xs={12}> */}
-   <div className="container md-sm mt-4">
+   <Container >
+  
+   <div className="container md mt-4 rounded" style={{border:'1px solid black'}}>
     <form method="GET">
         <div className='row'> 
-            {/* <div className='col-md-4'>
-              <p> Image Here</p>
-            </div> */}
-            <div className='col-md-8'>
-                <h5>My Name: {userData.name}</h5>
-                {/* <h6>Web developer</h6> */}
-                {/* <p className='profile-rating mt-3 mb-5'>Ranking</p> */}
-
+            <div className='col-md-6'>
+              <h5>Image</h5>
+            </div>
+            <div className='col-md-6'>
+                <h5>My Name - {userData.name}</h5>
                 <ul className="nav nav-tabs" role="tablist">
-                  <li className="nav-item pt-4">
-                    <a className="nav-link active" id="home-tab "href="#Home" role="tab">About</a>
+                  <li className="nav-item pt-5">
+                    <a className="nav-link active" id="home-tab "href="#Home" role="tab">About Me</a>
                   </li>
                   {/* <li className="nav-item">
                   <a className="nav-link active" id="profile-tab "href="#profile" role="tab">Timeline</a>
                   </li> */}
                 </ul>
             </div>
-    
         </div>
             <div className='row'>
-              {/* <div className='col-md-4'>
+              <div className='col-md-6'>
                   <div className='profile-work'>
-                    <p>Work Link</p>
-                    
+                    <h5>Work Link's</h5>  
                   </div>
-              </div> */}
+              </div>
 
-            <div className='col-md-8 about-info'>
+            <div className='col-md-6 about-info'>
                 <div className='tab-content profile-tab' id='myTabContent'>
                     <div className='tab-pane fade show active' id='Home' role="tabpanel" aria-labelledby='home-tab'>
                     <div className='row'>
@@ -95,7 +89,7 @@ const AboutMe = () => {
                             <p>{userData.email}</p>
                           </div> 
                           <div className='col-md-6'>
-                              <label>User Id</label>
+                              <label>User-ID</label>
                           </div>
                           <div className='col-md-6'>
                             <p>{userData._id}</p>
@@ -108,16 +102,16 @@ const AboutMe = () => {
             </div>
 
         </div>
+
     </form>
+    <div>
+      <Link  to='/UserRequests'>Your Service Requests</Link>
     </div>
-    {/* </Col>
-    </Row> */}
-    <div >
-      <Link to='/UserRequests'>Your All Requests</Link>
     </div>
+   
+    
 
     </Container>
-   
    </>
   )
 }

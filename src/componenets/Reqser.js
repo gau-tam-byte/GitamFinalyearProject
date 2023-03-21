@@ -58,7 +58,7 @@ const submitform = async()=>{
 
   })
   const data = await res.json();
-  if(res.status === 200){
+  if(res.status === 200 || data){
     window.alert("Request Sent")
     seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:""})
     navigates('/Reqser')
@@ -102,7 +102,7 @@ const submitform = async()=>{
             Request Type
           </label>
           <select className="form-control" name="Reqtype" id="Reqtype"  onChange={handleinputs} required >
-              <option value="">Please choose an option🔻</option>
+              <option value="">Please choose a Service U Want🔻</option>
               <option value="AC Technician">AC Service</option>
               <option value="Electrician">Electricity Service</option>
               <option value="Plumber">Plumbing Service</option>

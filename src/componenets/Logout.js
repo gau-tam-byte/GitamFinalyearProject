@@ -7,10 +7,11 @@ const Logout = () => {
     fetch('/logout',{
       method:"GET",
       headers:{
-        Accept: "application/json",
+        // Accept: "application/json",
         "Content-Type": "application/json"
       },
-      credentials:"include"
+      // credentials:"include"
+      
     }).then((res)=>{
       naviagatee('/login', {replace: true})
       if(res.status !== 200){
@@ -22,7 +23,14 @@ const Logout = () => {
     });
   })
   return (
-    <div>Logout ka page</div>
+
+    <>
+         <div>Logout ka page</div>
+
+
+    </>
+   
+
   )
 }
 

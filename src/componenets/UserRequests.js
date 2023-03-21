@@ -55,7 +55,7 @@ const UserRequests =() =>{
 
   return (
   <>
-  <div className='border rounded warning mr-5 ml-5 mt-5 pt-3 '>
+  <div style={{border: '2.7px solid black'}} className='rounded warning mr-2 ml-2 mt-5 pt-3 '>
   <Table responsive='md' bordered='dark' striped hover size='md' >
   <thead className='table-secondary'> 
         <tr >

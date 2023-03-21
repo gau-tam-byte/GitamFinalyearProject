@@ -54,8 +54,8 @@ function AgentLogin() {
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-                  <h2 className="fw-bold mb-2 text-uppercase ">Login</h2>
-                  <p className=" mb-5">Please enter your Phone and password to Login!</p>
+                  <h2 className="fw-bold mb-2 text-uppercase ">Agent Login</h2>
+                  <p className=" mb-5">Please enter your Name and password to Login!</p>
                   <div className="mb-3">
                     <Form method='POST'>
                       <Form.Group className="mb-3" controlId="formBasicEmail">

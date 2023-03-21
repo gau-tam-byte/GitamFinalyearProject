@@ -89,7 +89,16 @@ const AgentRegister = ()=> {
                         <Form.Label className='text-centre'>
                           Profession
                         </Form.Label>
-                        <Form.Control type='text' name='Profession' value={agentdata.Profession} onChange={handleinput} placeholder="Enter Profession"></Form.Control>
+                        <select className="form-control" name="Profession" id="Profession"  onChange={handleinput} required >
+                            <option value="">Please choose a Profession🔻</option>
+                            <option value="AC Technician">AC Technician</option>
+                            <option value="Electrician">Electrician</option>
+                            <option value="Plumber">Plumber</option>
+                            <option value="Carpenter">Carpenter</option>
+                            <option value="Car Mechanic">Car Mechanic</option>
+                            <option value="Bike Mechanic">Bike Mechanic</option>
+                        </select>
+                        {/* <Form.Control type='text' name='Profession' value={agentdata.Profession} onChange={handleinput} placeholder="Enter Profession"></Form.Control> */}
                       </Form.Group>
 
                   
