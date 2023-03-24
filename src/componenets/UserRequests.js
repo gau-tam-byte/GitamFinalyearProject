@@ -55,26 +55,29 @@ const UserRequests =() =>{
 
   return (
   <>
-  <div style={{border: '2.7px solid black'}} className='rounded warning mr-2 ml-2 mt-5 pt-3 '>
-  <Table responsive='md' bordered='dark' striped hover size='md' >
-  <thead className='table-secondary'> 
+  {/* style={{border: '2.7px solid black' ,Height:'auto'}} */}
+  <div className='mr-3 ml-3 mb-5 mt-5'>
+  <Table responsive='md' striped hover size='md' style={{border: "3px solid black", borderRadius:"10px"}}>
+  <thead className='table-secondary' style={{border: "3px solid black"}}> 
         <tr >
-          <th>All-Requests with Your ID</th>
-          <th>Request Type</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Description</th>
+          <th style={{border: "3px solid black"}}>All-Requests with Your ID</th>
+          <th style={{border: "3px solid black"}}>Request Type</th>
+          <th style={{border: "3px solid black"}}>Date</th>
+          <th style={{border: "3px solid black"}}>Time</th>
+          <th style={{border: "3px solid black"}}>Description</th>
+          <th style={{border: "3px solid black"}}>Request Status</th>
         </tr>
       </thead>
     {arrofobj.arr.map(i=>{
       return(
       // <tbody className='table-warning border rounded'>
         <tr className='table-warning'>
-          <td>{i._id}</td>
-          <td>{i.Reqtype}</td>
-          <td>{i.Date}</td>
-          <td>{i.Time}</td>
-          <td>{i.Description}</td>
+          <td style={{border: "1.5px solid black"}}>{i._id}</td>
+          <td style={{border: "1.5px solid black"}}>{i.Reqtype}</td>
+          <td style={{border: "1.5px solid black"}}>{i.Date}</td>
+          <td style={{border: "1.5px solid black"}}>{i.Time}</td>
+          <td style={{border: "1.5px solid black"}}>{i.Description}</td>
+          <td style={{border: "1.5px solid black"}}>{i.Status}</td>
         </tr>
       // </tbody>
       )

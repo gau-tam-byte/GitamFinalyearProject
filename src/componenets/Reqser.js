@@ -3,10 +3,11 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import {  useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
+// import FormText from 'react-bootstrap'
 
 const Reqser = () => {
   const navigates = useNavigate();
-  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:""})
+  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:"", Status:"Pending...."})
 
   const callreqserpage = async ()=>{
 
@@ -45,7 +46,7 @@ const Reqser = () => {
 
 const submitform = async()=>{
 
-  const {name,email,Phone,Reqtype,Date,Time,Description} = userData;
+  const {name,email,Phone,Reqtype,Date,Time,Description,Status} = userData;
 
   const res = await fetch('/Reqser',{
     method:"POST",
@@ -53,14 +54,15 @@ const submitform = async()=>{
       "Content-Type ": "application/json"
     },
     body: JSON.stringify({
-      name,email,Phone,Reqtype,Date,Time,Description
+      name,email,Phone,Reqtype,Date,Time,Description,Status
     })
+    
 
   })
   const data = await res.json();
-  if(res.status === 200 || data){
+  if(res.status === 200 || !data){
     window.alert("Request Sent")
-    seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:""})
+    seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:"", Status:""})
     navigates('/Reqser')
   }else if(res.status === 422 || !data){
     window.alert("plzz Fill the Data")
@@ -74,10 +76,10 @@ const submitform = async()=>{
   return (
   <>
   <Container>
-  <Row className="vh-50 d-flex justify-content-center align-items-center">
+  <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
    <div className="container md-sm mt-0">
-      <h2 className="mb-3" >REQUEST Service</h2>
+      <h2 className="mb-4" >Request Service</h2>
       <form method='POST'>
         <div className="mb-3">
           <label className="form-label" htmlFor="name">
@@ -113,16 +115,22 @@ const submitform = async()=>{
           {/* <input className="form-control" type="text" id="Reqtype" name="Reqtype" autoComplete='off' value={userData.Reqtype} onChange={handleinputs} required /> */}
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
+          <label className="form-label" htmlFor="Date">
             Date
           </label>
           <input className="form-control" type="date" id="Date" name="Date" autoComplete='off' value={userData.Date} onChange={handleinputs} required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
+          <label className="form-label" htmlFor="Time">
             Time
           </label>
           <input className="form-control" type="time" id="Time" name="Time" autoComplete='off' value={userData.Time} onChange={handleinputs} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="message">
+            Request Status Initially
+          </label>
+          <input className="form-control" id="message"  name="Status"  autoComplete='off' value={userData.Status} readOnly required />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="message">
@@ -130,6 +138,7 @@ const submitform = async()=>{
           </label>
           <textarea className="form-control" id="message"  name="Description"  autoComplete='off' value={userData.Description} onChange={handleinputs} required />
         </div>
+        
         <button className="btn btn-success" type="submit" onClick={submitform}>
           Send Request
         </button>
