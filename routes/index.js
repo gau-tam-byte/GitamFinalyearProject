@@ -49,6 +49,7 @@ router.post('/agentlogin',async(req,res,next)=>{
         return res.status(400).json({error:"Invalid Credentials"})
        
       }else{
+
        return  res.status(200).json({message:"Agent Login Successfull"})
       }
    
@@ -62,15 +63,11 @@ router.post('/agentlogin',async(req,res,next)=>{
 
 router.get('/Serreqs',agentauth,(req,res)=>{
  
-  // let userreqdata = user.findOne({})
+
 
   res.send(req.userRoot)
-  res.status(400).send({error:"PLease login"})
-  // res.send("login first")
-  // res.send(req.userProtype)
-  // console.log(userreqdata)
-
-  // console.log("Hello from Service Request page")
+  // res.status(400).send({error:"PLease login"})
+  
 })
 
 router.get('/AboutAgent',agentauth,(req,res)=>{
@@ -78,10 +75,76 @@ router.get('/AboutAgent',agentauth,(req,res)=>{
 })
 
 router.get('/ReqofuserRequests',agentauth,(req,res)=>{
-  res.send(req.uerreqs)
+  res.send( req.uerreqs )
 })
 
+// router.post('/UpdateSerreqdata',async(req,res)=>{
+//   try {
+//     const S = req.body.Requests.Status
+//     const objid = req.body.Requests._id
+    
+//     console.log(Statu)
+//     if(!Status){
+//       return res.status(400).json({error:"data not recieved to update form react state"})
+//     }
+
+//     const updatestatus = await user.findByIdAndUpdate({_id: objid},{$set:{'Requests.Status':S}},(err,doc)=>{
+//       if(err) return console.log({error:"err"})
+//       else res.send(doc)
+//     })  
+//     if(!updatestatus){
+//       return res.status(400).json({error:"data not update in mongodb"})
+//     }
+//     return res.status(200).json({message:"data updated in mongodb"})
+//   } catch (error) {
+//     console.log(error)
+//   }
 
 
+// })
+
+
+
+// router.post('/updatestatuss',async(req,res,next)=>{
+//   const Status = req.body.Status
+//   const ID = req.body._id
+
+//   try {
+//     await user.updateOne({_id :ID} ,{$push :{Requests: Status= "PROGRES..."}}, (err, updatedstatus)=>{
+//       if(err) return  console.log("not updated")
+//         updatedstatus.Status = Status="PROGRES..."
+//         updatedstatus.save();
+//         res.send("Updated");
+    
+//         res.send(updatedstatus)
+//     })
+//   } catch (error) {
+//     console.log(console.error({error:"kadhas"}))
+//   }
+
+//   next()
+
+
+
+// })
+
+router.put('/updsta',async(req,res)=>{
+  const id = req.body._id
+  const st = req.body.Status
+
+  try {
+      await user.updateMany({"Requests._id": id},{$set:{"Requests.$.Status":st}},{new:false},(err,doc)=>{
+      if(err){
+        console.log(error)
+
+      }else{
+        res.send(doc)
+        console.log("docment updated")
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router

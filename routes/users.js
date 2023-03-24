@@ -75,16 +75,16 @@ router.get('/getdata',auth,(req,res)=>{
 
 router.post('/Reqser',auth, async (req,res)=>{
   try {
-    const {name, email, Phone, Reqtype, Date ,Time,Description} = req.body
+    const {name, email, Phone, Reqtype, Date ,Time,Description,Status} = req.body
     
-    if ( !name|| !email|| !Phone ||!Reqtype || !Date  || !Time|| !Description) {
+    if ( !name|| !email|| !Phone ||!Reqtype || !Date  || !Time|| !Description || !Status) {
       
       return res.status(422).json({error :" PLease Enter all data"})
     }
   
     const usercontact = await User.findOne({_id : req.userID})
     if(usercontact){
-      const save = await usercontact.addrequest(name,email,Phone,Reqtype,Date,Time,Description);
+      const save = await usercontact.addrequest(name,email,Phone,Reqtype,Date,Time,Description, Status);
       const savedtodb = await usercontact.save()
       if(!save){
         return res.status(421).json({error:"Request Not Sent"})
