@@ -127,10 +127,10 @@ const submitform = async()=>{
           <input className="form-control" type="time" id="Time" name="Time" autoComplete='off' value={userData.Time} onChange={handleinputs} required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="message">
+          <label className="form-label" htmlFor="status">
             Request Status Initially
           </label>
-          <input className="form-control" id="message"  name="Status"  autoComplete='off' value={userData.Status} readOnly required />
+          <input className="form-control" id="status"  name="Status"  autoComplete='off' value={userData.Status} readOnly required />
         </div>
         <div className="mb-3">
           <label className="form-label" htmlFor="message">

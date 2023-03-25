@@ -28,13 +28,6 @@ const  Serreqs = () => {
       setSerReqsbyuser({...SerReqsbyuser, userreqwithadddetails:data})
      
       console.log(data);
-   
-      if(!res.status === 200 ){
-        const error = new Error(res.error)
-        throw error;
-      }if(res.status === 400){
-        window.alert("Login First")
-      }
     } catch (error) {
       console.log(error)
   
@@ -53,7 +46,7 @@ const  Serreqs = () => {
     })
       const dataagent = await resagent.json()
       console.log(dataagent)
-      seruserData({...userData, Profession:dataagent.Profession})
+      seruserData({...userData, Profession: dataagent.Profession})
       console.log(userData)
     }catch (error) {
       console.log(error)
@@ -93,7 +86,7 @@ const  Serreqs = () => {
 
       await fetch('/updsta',{
       method:"PUT",
-   
+
       body: JSON.stringify({_id, Status})
 
     })
@@ -104,7 +97,7 @@ const  Serreqs = () => {
   useEffect(() => {
     callpage()
     callabtagent()
-    updatestatus()
+    // updatestatus()
     // calluserreqs() 
   },[])
 
@@ -126,20 +119,15 @@ const  Serreqs = () => {
                if(check){
                 return(
                    
-                  // console.log(check)
+                
                   <>
-                  {/* <tr key={x._id}>
-                    <td>{x.name}</td>
-                    <td>{x.Phone}</td>
-                    <td>{x.Reqtype}</td>
-                    <td>{x.Description}</td>
-                  </tr> */}
+                 
                   <div className='mr-3 ml-3'>
-                      <Form>
+                      <Form key={x._id}>
                           <Row className="mb-3">
                             <Form.Group  as={Col} controlId="formGridName">
                               <Form.Label >Name</Form.Label>
-                              <Form.Control  key={x._id}  readOnly value={x.name} type="text" />
+                              <Form.Control  key={x._id} readOnly value={x.name} type="text" />
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridPassword">
@@ -155,13 +143,7 @@ const  Serreqs = () => {
                               <Form.Control  key={x._id}  readOnly value={x.Date} />
                             </Form.Group>
 
-                            {/* <Form.Group as={Col} controlId="formGridState">
-                              <Form.Label>State</Form.Label>
-                              <Form.Select defaultValue="Choose...">
-                                <option>Choose...</option>
-                                <option>...</option>
-                              </Form.Select>
-                            </Form.Group> */}
+                            
 
                             <Form.Group as={Col} controlId="formGridZip">
                               <Form.Label>Time 24-Hour</Form.Label>
@@ -208,7 +190,7 @@ const  Serreqs = () => {
                       </Form>
                   </div>
                   
-                  {/* {x.Reqtype} === {} */}
+
                   
                   </>
                 )

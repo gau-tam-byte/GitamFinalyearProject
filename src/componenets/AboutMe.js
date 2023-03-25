@@ -41,7 +41,7 @@ const AboutMe = () => {
 
    <Container >
   
-   <div className="container md mt-4 rounded" style={{border:'1px solid black'}}>
+   <div className="container md-sm-xs-lg mt-4 rounded" style={{border:'1px solid black'}}>
     <form method="GET">
         <div className='row'> 
             <div className='col-md-6'>
@@ -66,7 +66,7 @@ const AboutMe = () => {
                   </div>
               </div>
 
-            <div className='col-md-6 about-info'>
+            <div className='col-md-sm-lg-xs-6 about-info'>
                 <div className='tab-content profile-tab' id='myTabContent'>
                     <div className='tab-pane fade show active' id='Home' role="tabpanel" aria-labelledby='home-tab'>
                     <div className='row'>
