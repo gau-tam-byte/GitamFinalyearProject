@@ -1,13 +1,13 @@
 const express = require('express');
-// const morgan = require('morgan')
 const path = require('path');
 const cookieparser = require('cookie-parser');
+const session = require('express-session')
+const passport = require('passport');
+require('../Backend/db/dbconnection');
+// const mongoose = require('mongoose');
+// const morgan = require('morgan')
 // const expressHandlerbars = require('express-handlebars')
 // const flash = require('connect-flash');
-const session = require('express-session')
-// const mongoose = require('mongoose');
-const passport = require('passport');
-require('../Backend/db/dbconnection')
 // mongoose.Promise= global.Promise
 // mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true')
 
