@@ -28,13 +28,4 @@ const Authenticatess = (async (req,res,next) =>{
   }
 })
 
-// const ifnotauth = (async (req,res,next)=>{
-//   const token = await req.cookies.cookiesecret
-//   if(!token){
-//     res.redirect('/login')
-//   }
-//   next()
-//   // return token;
-// })
 module.exports = Authenticatess
-// module.exports = ifnotauth
