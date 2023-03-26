@@ -60,7 +60,7 @@ const submitform = async()=>{
 
   })
   const data = await res.json();
-  if(res.status === 200 || !data){
+  if(res.status === 200 || data){
     window.alert("Request Sent")
     seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:"", Status:""})
     navigates('/Reqser')

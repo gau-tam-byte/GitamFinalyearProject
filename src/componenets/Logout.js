@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
+// import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
-  const naviagatee = Navigate();
+  const naviagatee = useNavigate();
   useEffect(()=>{
     fetch('/logout',{
       method:"GET",
@@ -25,7 +26,7 @@ const Logout = () => {
   return (
 
     <>
-         <div>Logout ka page</div>
+         <div>User Logout</div>
     </>
 
   )

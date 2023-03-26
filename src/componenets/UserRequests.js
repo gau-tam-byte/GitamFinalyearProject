@@ -72,12 +72,12 @@ const UserRequests =() =>{
       return(
       // <tbody className='table-warning border rounded'>
         <tr className='table-warning'>
-          <td style={{border: "1.5px solid black"}}>{i._id}</td>
-          <td style={{border: "1.5px solid black"}}>{i.Reqtype}</td>
-          <td style={{border: "1.5px solid black"}}>{i.Date}</td>
-          <td style={{border: "1.5px solid black"}}>{i.Time}</td>
-          <td style={{border: "1.5px solid black"}}>{i.Description}</td>
-          <td style={{border: "1.5px solid black"}}>{i.Status}</td>
+          <td>{i._id}</td>
+          <td>{i.Reqtype}</td>
+          <td>{i.Date}</td>
+          <td>{i.Time}</td>
+          <td>{i.Description}</td>
+          <td>{i.Status}</td>
         </tr>
       // </tbody>
       )

@@ -21,8 +21,7 @@ const Home = () => {
   return (
     
     <>
-    <div style={{display: 'flex',
-        alignItems: 'center',justifyContent:"center"}}>Welcome to Project Introduction</div><br></br>
+    <div style={{display: 'flex',  alignItems: 'center',justifyContent:"center"}}>Welcome to Project Introduction</div><br></br>
       <Accordion defaultActiveKey="3">
       <Card className='mr-3 ml-3'>
         <Card.Header >
