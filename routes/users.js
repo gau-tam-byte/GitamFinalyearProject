@@ -86,13 +86,12 @@ router.post('/Reqser',auth, async (req,res)=>{
     if(usercontact){
       const save = await usercontact.addrequest(name,email,Phone,Reqtype,Date,Time,Description, Status);
       const savedtodb = await usercontact.save()
-      if(!save){
-        return res.status(421).json({error:"Request Not Sent"})
-      }else{
+      if(save||savedtodb){
         return res.status(200).json({message :"Request Sent Successfully!"})
-
       }
-    }    
+    }else{
+      return res.status(421).json({error:"Request Not Sent"})
+    } 
   } catch(error) {
     console.log(console.error("Request Not sent!!????"))
   }
@@ -123,7 +122,7 @@ router.get('/UserRequests', auth, (req,res)=>{
 
 
 router.get('/logout',(req,res)=>{
-  req.clearCookie(agentjwtoken,{path: '/'})
+  res.clearCookie('jwtoken',{path: '/'})
   res.status(200).send("User Logged out")
 })
   module.exports = router

@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const agent = require('../models/agentdb')
 const user = require('../models/user')
 const agentauth = require('../middleware/authagent')
+const { route } = require('./users')
 
 
 
@@ -96,6 +97,11 @@ router.put('/updsta',async(req,res)=>{
   } catch (error) {
     console.log(error)
   }
+})
+
+router.get('/agentlogout',(req,res)=>{
+  res.clearCookie('agentjwtoken')
+  res.status(200).send({message:"agentloggedout"})
 })
 
 module.exports = router
