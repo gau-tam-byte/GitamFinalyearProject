@@ -14,7 +14,7 @@ const Logout = () => {
       credentials:"include"
       
     }).then((res)=>{
-      naviagatee('/login', {replace: true})
+      naviagatee('/', {replace: true})
       if(res.status !== 200){
         const err = new Error(res.Error)
         throw err

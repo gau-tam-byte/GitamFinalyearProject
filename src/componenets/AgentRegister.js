@@ -68,7 +68,7 @@ const AgentRegister = ()=> {
                         <Form.Label className="text-center">
                           Name
                         </Form.Label>
-                        <Form.Control type="text" name="name" value={agentdata.name} onChange={handleinput}  placeholder="Enter Name" />
+                        <Form.Control type="text" name="name" value={agentdata.name} onChange={handleinput}  placeholder="Enter Name & Please Remember Name entered carefully!! For Future Login"/>
                       </Form.Group>
 
                       <Form.Group className='mb-3' controlId='username'>

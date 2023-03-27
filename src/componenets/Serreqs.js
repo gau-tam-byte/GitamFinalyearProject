@@ -14,7 +14,7 @@ const  Serreqs = () => {
   const naviii = useNavigate()
   const [SerReqsbyuser, setSerReqsbyuser] = useState({userreqwithadddetails:[]})
   const [userData, seruserData] = useState({Profession:""})
-  const [status, setstatus] = useState({_id:"", Status:""})
+  const [status, setstatus] = useState({email:"",descc:"",Status:""})
   // const [updatereqstatus, setupdatereqstatus] = useState({updatependingstatus:[]})
 
   const callpage = async ()=>{
@@ -90,12 +90,12 @@ const  Serreqs = () => {
   }
   const updatestatus = async ()=>{
 
-    let  {_id , Status} = status
+    let  {email ,descc, Status} = status
 
       await fetch('/updsta',{
       method:"PUT",
 
-      body: JSON.stringify({_id, Status})
+      body: JSON.stringify({email,descc, Status})
 
     })
     console.log(status)
@@ -163,25 +163,42 @@ const  Serreqs = () => {
                                 <Form.Label>Request Type</Form.Label>
                                 <Form.Control key={x._id} readOnly value={x.Reqtype} />
                               </Form.Group>
-
-                              <Form.Group as={Col} controlId="formGridAddress1">
-                                <Form.Label>Request Status</Form.Label>
-                                <Form.Control key={x._id} readOnly value={x.Status} />
-                              </Form.Group>
+                              <Form.Group as={Col} controlId="formGridAddress2">
+                            <Form.Label>Request-ID</Form.Label>
+                            <Form.Control key={x._id} readOnly value={x._id} />
+                          </Form.Group>
+                             
                           </Row>
-                         <Row className='mb-3'>
-                         <Form.Group as={Col} controlId="formGridAddress2">
+                          <Row className='mb-3'>
+                          <Form.Group as={Col} controlId="formGridAddress2">
                             <Form.Label>Description</Form.Label>
                             <Form.Control key={x._id} readOnly value={x.Description} />
                           </Form.Group>
                           <Form.Group as={Col} controlId="formGridAddress2">
-                            <Form.Label>Request-ID</Form.Label>
-                            <Form.Control key={x._id} readOnly value={x._id} />
-                          </Form.Group>
+                            <Form.Label>Copy Description</Form.Label>
+                            <Form.Control onChange={handleinput} name="descc" />
+                          </Form.Group> 
+                          </Row>
+                          <Row className='mb-3'>
+                          <Form.Group as={Col} controlId="formGridAddress1">
+                              <Form.Label>Email</Form.Label>
+                                <Form.Control key={x._id} readOnly value={x.email} />
+                              </Form.Group>
+
                           <Form.Group as={Col} controlId="formGridAddress2">
-                            <Form.Label>Copy Request-ID</Form.Label>
-                            <Form.Control onChange={handleinput} name="_id" />
-                          </Form.Group> <Form.Group as={Col} controlId="formGridAddress2">
+                            <Form.Label>Copy Email</Form.Label>
+                            <Form.Control onChange={handleinput} name="email" />
+                          </Form.Group> 
+                          </Row>
+                         <Row className='mb-3'>
+                         
+                         
+                          
+                          <Form.Group as={Col} controlId="formGridAddress1">
+                              <Form.Label>Request Status</Form.Label>
+                                <Form.Control key={x._id} readOnly value={x.Status} />
+                              </Form.Group>
+                          <Form.Group as={Col} controlId="formGridAddress2">
                             <Form.Label>Update Request Status</Form.Label>
                             <Form.Control onChange={handleinput} name="Status" />
                           </Form.Group>
@@ -189,10 +206,8 @@ const  Serreqs = () => {
 
                          </Row>
                           
-
-                        
                           <Button variant="primary" type="submit" onClick={updatestatus}>
-                            <Link ></Link>Accept
+                            <Link ></Link>Confirm Accept
                           </Button>
                           <hr></hr>
                       </Form>
