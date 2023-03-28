@@ -2,7 +2,16 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
+import bg from '../images/c.png'
+import bgg from '../images/cool.png'
+import {FiMail,FiSmartphone,FiUser,FiKey} from "react-icons/fi";
+import {AiOutlineProfile} from "react-icons/ai";
+import {MdHomeRepairService} from "react-icons/md";
+
+
+
+
 
 
 const AboutMe = () => {
@@ -38,20 +47,23 @@ const AboutMe = () => {
 
   return (
    <>
-
+    <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"auto"}} className="mr-2 ml-2 mb-2 rounded">
    <Container >
-  
-   <div className="container md-sm-xs-lg mt-4 rounded" style={{border:'1px solid black'}}>
+    <Row className="vh-100 d-flex justify-content-center align-items-center">
+      <Col md={8} lg={6} xs={12}>
+
+      <div className="container md-12 mt-12 rounded" style={{border:'1px solid black',backgroundImage:`url(${bgg})`,backgroundSize: 'cover'}}>
+        <h1 className='pb-2'>{<AiOutlineProfile/>} Profile</h1>
     <form method="GET">
         <div className='row'> 
-            <div className='col-md-6'>
+            {/* <div className='col-md-6'>
               <h5>Image</h5>
-            </div>
-            <div className='col-md-6'>
-                <h5>My Name - {userData.name}</h5>
-                <ul className="nav nav-tabs" role="tablist">
-                  <li className="nav-item pt-5">
-                    <a className="nav-link active" id="home-tab "href="#Home" role="tab">About Me</a>
+            </div> */}
+            <div className='col-md-12'>
+                <h5>Name - {userData.name}</h5>
+                <ul className="nav nav-tabs-border-color: black" role="tablist">
+                  <li className="nav-item pt-3">
+                    <a className="nav-link active " id="home-tab "href="#Home" role="tab">.</a>
                   </li>
                   {/* <li className="nav-item">
                   <a className="nav-link active" id="profile-tab "href="#profile" role="tab">Timeline</a>
@@ -60,36 +72,36 @@ const AboutMe = () => {
             </div>
         </div>
             <div className='row'>
-              <div className='col-md-6'>
+              {/* <div className='col-md-6'>
                   <div className='profile-work'>
                     <h5>Work Link's</h5>  
                   </div>
-              </div>
+              </div> */}
 
-            <div className='col-md-sm-lg-xs-6 about-info'>
-                <div className='tab-content profile-tab' id='myTabContent'>
-                    <div className='tab-pane fade show active' id='Home' role="tabpanel" aria-labelledby='home-tab'>
+            <div className='col-md-12 about-info'>
+                <div className='tab-content profile-tab ' id='myTabContent'>
+                    <div className='tab-pane fade show active ' id='Home' role="tabpanel" aria-labelledby='home-tab'>
                     <div className='row'>
                           <div className='col-md-6'>
-                            <label>Username </label>
+                            <label>{<FiUser/>} Username </label>
                           </div>
                           <div className='col-md-6'>
                             <p>{userData.username}</p>
                           </div> 
                           <div className='col-md-6'>
-                              <label>Phone</label>
+                              <label>{<FiSmartphone/>} Phone</label>
                           </div>
                           <div className='col-md-6'>
                             <p>{userData.Phone}</p>
                           </div> 
                           <div className='col-md-6'>
-                              <label>Email</label>
+                              <label>{<FiMail/>} Email</label>
                           </div>
                           <div className='col-md-6'>
                             <p>{userData.email}</p>
                           </div> 
                           <div className='col-md-6'>
-                              <label>User-ID</label>
+                              <label>{<FiKey/>} User-ID</label>
                           </div>
                           <div className='col-md-6'>
                             <p>{userData._id}</p>
@@ -104,14 +116,21 @@ const AboutMe = () => {
         </div>
 
     </form>
-    <div>
-      <Link  to='/UserRequests'>Your Service Requests</Link>
+    <div className='pt-3'>
+      <Link  to='/UserRequests'>{<MdHomeRepairService/>} Your Service Requests</Link>
     </div>
     </div>
+
+      </Col>
+
+    </Row>
+  
+  
    
     
 
     </Container>
+    </div>
    </>
   )
 }

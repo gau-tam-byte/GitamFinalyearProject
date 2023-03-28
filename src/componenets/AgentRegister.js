@@ -53,11 +53,11 @@ const AgentRegister = ()=> {
 
   return (
     <>
-    <div>
+    <div style={{backgroundColor:"dimgrey", height:"auto"}} className=" border rounded mr-2 ml-2 mb-2">
     <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-          <div className="border rounded border-2 border-danger"></div>
+          {/* <div className="border rounded border-2 border-danger"></div> */}
             <Card className="shadow px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">

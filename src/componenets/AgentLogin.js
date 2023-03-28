@@ -47,10 +47,11 @@ function AgentLogin() {
   }
   return (
     <>
+    <div style={{backgroundColor:"cornflowerblue"}} className=" border rounded mr-2 ml-2  mb-2" >
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-            <div className="border rounded border-2 border-dark"></div>
+            <div className="border rounded border-1 border-dark"></div>
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
@@ -107,6 +108,7 @@ function AgentLogin() {
           </Col>
         </Row>
       </Container>
+      </div>
     </>
   )
 }

@@ -50,12 +50,12 @@ const Login = () => {
 
   return (
   <>
-  <div>
+  <div style={{backgroundColor:"beige"}} className=" border rounded mr-2 ml-2  mb-2">
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-            <div className="border rounded border-2 border-primary"></div>
-            <Card className="shadow">
+            <div className="border rounded border-1 border-primary"></div>
+            <Card className="dark shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
                   <h2 className="fw-bold mb-2 text-uppercase ">User Login</h2>
@@ -66,7 +66,7 @@ const Login = () => {
                         <Form.Label className="text-center">
                           Email address
                         </Form.Label>
-                        <Form.Control type="email" name="email" onChangeCapture={handleinputss} defaultValue={user.email} placeholder="Enter email" />
+                        <Form.Control type='email' name="email" required onChangeCapture={handleinputss} defaultValue={user.email} placeholder="Enter email" />
                         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>

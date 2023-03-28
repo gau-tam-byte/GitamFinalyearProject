@@ -2,6 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import {  useNavigate } from 'react-router-dom'
+import bg from '../images/cool-background.png'
+import bgg from '../images/c.png'
+import {SiNamecheap,SiStatuspage} from "react-icons/si"
+import {FiMail, FiPhone} from "react-icons/fi";
+import { BiGitPullRequest,BiTimeFive } from "react-icons/bi";
+import { BsFillCalendar2DateFill } from "react-icons/bs";
+import { MdDescription } from "react-icons/md";
+
+
+
+
+
 import { Container, Row, Col } from 'react-bootstrap'
 // import FormText from 'react-bootstrap'
 
@@ -75,33 +87,35 @@ const submitform = async()=>{
 }
   return (
   <>
-  <Container>
+  <div style={{backgroundImage:`url(${bgg})`,backgroundSize: 'cover', height:"auto"}} className="mr-2 ml-2 mb-2 rounded">
+  <Container >
   <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-   <div className="container md-sm mt-0">
-      <h2 className="mb-4" >Request Service</h2>
+          {/* className="container md-sm mt-0" */}
+   <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"820px"}} className="pr-2 pl-2 mb-2 rounded">
+      <h2 className="mb-4 text-white"  >REQUEST Service</h2>
       <form method='POST'>
         <div className="mb-3">
-          <label className="form-label" htmlFor="name">
-            Name
+          <label className="form-label text-white" htmlFor="name">
+            {<SiNamecheap/>} Name
           </label>
           <input className="form-control" type="text" id="name" name='name' readOnly autoComplete='off' defaultValue={userData.name}  required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
-            Email
+          <label className="form-label text-white" htmlFor="email">
+            {<FiMail/>} Email
           </label>
           <input className="form-control" type="email" id="email" name="email" readOnly autoComplete='off' defaultValue={userData.email}  required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="Phone">
-            Phone
+          <label className="form-label text-white" htmlFor="Phone">
+            {<FiPhone/>} Phone
           </label>
           <input className="form-control" type="number" id="Phone" name="Phone" readOnly autoComplete='off' defaultValue={userData.Phone}  required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="Reqtype">
-            Request Type
+          <label className="form-label text-white" htmlFor="Reqtype">
+            {<BiGitPullRequest/>} Request Type
           </label>
           <select className="form-control" name="Reqtype" id="Reqtype"  onChange={handleinputs} required >
               <option value="">Please choose a Service U Want🔻</option>
@@ -115,26 +129,26 @@ const submitform = async()=>{
           {/* <input className="form-control" type="text" id="Reqtype" name="Reqtype" autoComplete='off' value={userData.Reqtype} onChange={handleinputs} required /> */}
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="Date">
-            Date
+          <label className="form-label text-white" htmlFor="Date">
+           {<BsFillCalendar2DateFill/>} Date
           </label>
           <input className="form-control" type="date" id="Date" name="Date" autoComplete='off' value={userData.Date} onChange={handleinputs} required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="Time">
-            Time
+          <label className="form-label text-white" htmlFor="Time">
+            {<BiTimeFive/>} Time
           </label>
           <input className="form-control" type="time" id="Time" name="Time" autoComplete='off' value={userData.Time} onChange={handleinputs} required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="status">
-            Request Status Initially
+          <label className="form-label text-white" htmlFor="status">
+            {<SiStatuspage/>} Request Status Initially
           </label>
           <input className="form-control" id="status"  name="Status"  autoComplete='off' value={userData.Status} readOnly required />
         </div>
         <div className="mb-3">
-          <label className="form-label" htmlFor="message">
-            Description
+          <label className="form-label text-white" htmlFor="message">
+            {<MdDescription/>} Description
           </label>
           <textarea className="form-control" id="message"  name="Description"  autoComplete='off' value={userData.Description} onChange={handleinputs} required />
         </div>
@@ -147,6 +161,7 @@ const submitform = async()=>{
     </Col>
   </Row>
   </Container>
+  </div>
 </>
 )}
 
