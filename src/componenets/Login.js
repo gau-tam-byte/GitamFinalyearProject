@@ -43,11 +43,8 @@ const Login = () => {
       console.log('sucessfull Login')
       naviagatee("/Reqser")
     }
-    
-
+  
   } 
-
-
   return (
   <>
   <div style={{backgroundColor:"beige"}} className=" border rounded mr-2 ml-2  mb-2">
@@ -82,16 +79,6 @@ const Login = () => {
                       <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           <Form.Check type="checkbox" label="Check me In" />
                       </Form.Group>
-                      {/* <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                        <p className="small">
-                          <a className="text-primary" href="#!">
-                            Forgot password?
-                          </a>
-                        </p>
-                      </Form.Group> */}
                       <div className="d-grid">
                         <Button variant="primary" type="submit" onClick={verifydata}>
                           Login
@@ -113,9 +100,6 @@ const Login = () => {
       </Container>
     </div>         
     </>
-   
-  
   )
 }
-
 export default Login

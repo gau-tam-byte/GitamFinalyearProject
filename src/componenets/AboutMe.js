@@ -8,12 +8,6 @@ import bgg from '../images/cool.png'
 import {FiMail,FiSmartphone,FiUser,FiKey} from "react-icons/fi";
 import {AiOutlineProfile} from "react-icons/ai";
 import {MdHomeRepairService} from "react-icons/md";
-
-
-
-
-
-
 const AboutMe = () => {
   const Navigates = useNavigate()
   const [userData, seruserData] = useState({})
@@ -43,8 +37,6 @@ const AboutMe = () => {
   useEffect(() => {
     callaboutuspage()
   },[])
- 
-
   return (
    <>
     <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"auto"}} className="mr-2 ml-2 mb-2 rounded">
@@ -56,28 +48,17 @@ const AboutMe = () => {
         <h1 className='pb-2'>{<AiOutlineProfile/>} Profile</h1>
     <form method="GET">
         <div className='row'> 
-            {/* <div className='col-md-6'>
-              <h5>Image</h5>
-            </div> */}
             <div className='col-md-12'>
                 <h5>Name - {userData.name}</h5>
                 <ul className="nav nav-tabs-border-color: black" role="tablist">
                   <li className="nav-item pt-3">
                     <a className="nav-link active " id="home-tab "href="#Home" role="tab">.</a>
                   </li>
-                  {/* <li className="nav-item">
-                  <a className="nav-link active" id="profile-tab "href="#profile" role="tab">Timeline</a>
-                  </li> */}
+                  
                 </ul>
             </div>
         </div>
             <div className='row'>
-              {/* <div className='col-md-6'>
-                  <div className='profile-work'>
-                    <h5>Work Link's</h5>  
-                  </div>
-              </div> */}
-
             <div className='col-md-12 about-info'>
                 <div className='tab-content profile-tab ' id='myTabContent'>
                     <div className='tab-pane fade show active ' id='Home' role="tabpanel" aria-labelledby='home-tab'>
@@ -112,27 +93,17 @@ const AboutMe = () => {
                      
                 </div>
             </div>
-
         </div>
-
     </form>
     <div className='pt-3'>
       <Link  to='/UserRequests'>{<MdHomeRepairService/>} Your Service Requests</Link>
     </div>
     </div>
-
       </Col>
-
     </Row>
-  
-  
-   
-    
-
     </Container>
     </div>
    </>
   )
 }
-
 export default AboutMe

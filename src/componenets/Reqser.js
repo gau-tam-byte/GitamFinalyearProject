@@ -9,13 +9,7 @@ import {FiMail, FiPhone} from "react-icons/fi";
 import { BiGitPullRequest,BiTimeFive } from "react-icons/bi";
 import { BsFillCalendar2DateFill } from "react-icons/bs";
 import { MdDescription } from "react-icons/md";
-
-
-
-
-
 import { Container, Row, Col } from 'react-bootstrap'
-// import FormText from 'react-bootstrap'
 
 const Reqser = () => {
   const navigates = useNavigate();
@@ -69,7 +63,6 @@ const submitform = async()=>{
       name,email,Phone,Reqtype,Date,Time,Description,Status
     })
     
-
   })
   const data = await res.json();
   if(res.status === 200 || data){
@@ -91,7 +84,6 @@ const submitform = async()=>{
   <Container >
   <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-          {/* className="container md-sm mt-0" */}
    <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"820px"}} className="pr-2 pl-2 mb-2 rounded">
       <h2 className="mb-4 text-white"  >REQUEST Service</h2>
       <form method='POST'>
@@ -126,7 +118,6 @@ const submitform = async()=>{
               <option value="Car Mechanic">Car Service</option>
               <option value="Bike Mechanic">Bike Service</option>
           </select>
-          {/* <input className="form-control" type="text" id="Reqtype" name="Reqtype" autoComplete='off' value={userData.Reqtype} onChange={handleinputs} required /> */}
         </div>
         <div className="mb-3">
           <label className="form-label text-white" htmlFor="Date">
@@ -150,9 +141,8 @@ const submitform = async()=>{
           <label className="form-label text-white" htmlFor="message">
             {<MdDescription/>} Description
           </label>
-          <textarea className="form-control" id="message"  name="Description"  autoComplete='off' value={userData.Description} onChange={handleinputs} required />
+          <textarea className="form-control" id="message"  name="Description"  autoComplete='off' placeholder='Description should be unique' value={userData.Description} onChange={handleinputs} required />
         </div>
-        
         <button className="btn btn-success" type="submit" onClick={submitform}>
           Send Request
         </button>

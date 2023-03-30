@@ -1,14 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { Navigate } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
-
 const AgentRegister = ()=> {
-  // const navigates = Navigate();
   const [agentdata, setagentdata] = useState({name:"",Phone:"",NationalID:"",Profession:"",Password:"",cPassword:""})
-
 
   const handleinput = (e)=>{
 
@@ -20,9 +16,7 @@ const AgentRegister = ()=> {
     value = e.target.value
 
     setagentdata({...agentdata,[name]:value})
-
   }
-
   const posttodbag = async (e)=>{
     e.preventDefault()
     try {
@@ -39,7 +33,6 @@ const AgentRegister = ()=> {
       const data = await res.json()
       if(res.status === 201 || data){
         window.alert("Agent Successfully Registered!")
-        // navigates('/AgentLogin')
         setagentdata({...agentdata, name:"",Phone:"",NationalID:"",Profession:"",Password:"",cPassword:""})
       }else if(res.status === 400 || !data){
         window.alert("Agent Not Registered!")
@@ -50,14 +43,12 @@ const AgentRegister = ()=> {
       console.log(error)
     }
   }
-
   return (
     <>
     <div style={{backgroundColor:"dimgrey", height:"auto"}} className=" border rounded mr-2 ml-2 mb-2">
     <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-          {/* <div className="border rounded border-2 border-danger"></div> */}
             <Card className="shadow px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
@@ -70,21 +61,18 @@ const AgentRegister = ()=> {
                         </Form.Label>
                         <Form.Control type="text" name="name" value={agentdata.name} onChange={handleinput}  placeholder="Enter Name & Please Remember Name entered carefully!! For Future Login"/>
                       </Form.Group>
-
                       <Form.Group className='mb-3' controlId='username'>
                         <Form.Label className='text-centre'>
                           Phone
                         </Form.Label>
                         <Form.Control type='number' name='Phone' value={agentdata.Phone} onChange={handleinput} placeholder="Phone"></Form.Control>
                       </Form.Group>
-
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
                           National ID
                         </Form.Label>
                         <Form.Control type="number" name="NationalID" value={agentdata.NationalID} onChange={handleinput} placeholder="Enter National-ID no." />
                       </Form.Group>
-
                       <Form.Group className='mb-3' controlId='Phone'>
                         <Form.Label className='text-centre'>
                           Profession
@@ -98,11 +86,7 @@ const AgentRegister = ()=> {
                             <option value="Car Mechanic">Car Mechanic</option>
                             <option value="Bike Mechanic">Bike Mechanic</option>
                         </select>
-                        {/* <Form.Control type='text' name='Profession' value={agentdata.Profession} onChange={handleinput} placeholder="Enter Profession"></Form.Control> */}
                       </Form.Group>
-
-                  
-
                       <Form.Group
                         className="mb-3"
                         controlId="formBasicPassword"
@@ -117,11 +101,6 @@ const AgentRegister = ()=> {
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control type="password" name="cPassword" value={agentdata.cPassword} onChange={handleinput} placeholder="Re-Enter Password" />
                       </Form.Group>
-                      {/* <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                      </Form.Group> */}
                       <div className="d-grid">
                         <Button variant="danger" type="submit" onClick={posttodbag}>
                           Create Account
@@ -145,5 +124,4 @@ const AgentRegister = ()=> {
     </>
   )
 }
-
 export default AgentRegister

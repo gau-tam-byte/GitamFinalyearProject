@@ -3,14 +3,11 @@ import { Link} from 'react-router-dom'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom'
 
-
-
 const  Register = () =>{
   const naviagate = useNavigate();
   const [ user, setUser ] = useState({
     name: "", username:"", email :"",Phone:"", password:"", confirmationPassword:""
   })
-
   const handleinputs = (e) =>{
     console.log(e)
       
@@ -20,7 +17,6 @@ const  Register = () =>{
 
     setUser({...user,[name]:value})
   }
-
   const postdata = async (e) =>{
     e.preventDefault()
     
@@ -46,16 +42,13 @@ const  Register = () =>{
       console.log('sucessfull registration')
       naviagate("/Login")
     }
-    
   } 
-
   return (
     <>
     <div style={{backgroundColor:"brown", height:"auto"}} className=" border rounded mr-2 ml-2 mb-2">
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-          {/* <div className="border rounded border-1 border-warning"></div> */}
             <Card className="shadow px-4">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
@@ -68,30 +61,24 @@ const  Register = () =>{
                         </Form.Label>
                         <Form.Control type="text"  name="name" value={user.name} onChange={handleinputs} placeholder="Enter Name" />
                       </Form.Group>
-
                       <Form.Group className='mb-3' controlId='username'>
                         <Form.Label className='text-centre'>
                           Username
                         </Form.Label>
                         <Form.Control type='text' name='username' onChange={handleinputs} value={user.username} placeholder="Create Username"></Form.Control>
                       </Form.Group>
-
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
                           Email address
                         </Form.Label>
                         <Form.Control type="email" name="email" onChange={handleinputs} value={user.email} placeholder="Enter email" />
                       </Form.Group>
-
                       <Form.Group className='mb-3' controlId='Phone'>
                         <Form.Label className='text-centre'>
                           Phone
                         </Form.Label>
                         <Form.Control type='number' name='Phone' onChange={handleinputs} value={user.Phone} placeholder="Enter Phone No."></Form.Control>
                       </Form.Group>
-
-                    
-
                       <Form.Group
                         className="mb-3"
                         controlId="formBasicpassword"
@@ -133,6 +120,5 @@ const  Register = () =>{
     </div>
     </> 
     )
-
 }
 export default Register

@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import { useEffect } from 'react'
 import bgg from '../images/c.png'
+import bggg from '../images/c.png'
+
 
 
 const UserRequests =() =>{
@@ -32,33 +34,9 @@ const UserRequests =() =>{
 
   }
 
-  // const dis = (arr)=>{
-  //   if(!arr) return console.log("nono")
-
-  //  return arr.forEach(element => {
-  //   <li>{element}</li>
-  //  });
-  // }
-
-  // const displayreqs =(arr) =>{
-  //   if(!arr.length) return null
-
-  //   return arr.map((arr,Phone)=>(
-  //     <div key={Phone}>
-  //       <li>{arr.name}</li>
-  //       <li>{arr.Phone}</li>
-  //       <li>{arr.Reqtype}</li>
-  //       <li>{arr.email}</li>
-  //       <li>{arr.Time}</li>
-  //     </div>
-
-  //   ))
-  // }
-
   return (
   <>
-  {/* className="mr-2 ml-2 mb-2 rounded" */}
-  {/* style={{border: '2.7px solid black' ,Height:'auto'}} */}
+  <div style={{backgroundImage:`url(${bggg})`,backgroundSize: 'cover', height:"600px"}}>
   <div style={{backgroundImage:`url(${bgg})`,backgroundSize: 'cover', height:"auto",border: "1px solid black", borderRadius:"10px"}} className='mr-3 ml-3 mb-5 mt-5'>
   <Table responsive='md' striped hover size='md' style={{border: "1px solid black", borderRadius:"10px", overflow: 'hidden',height:'auto'}}>
   <thead className='table-secondary' style={{border: "px solid black"}}> 
@@ -73,7 +51,6 @@ const UserRequests =() =>{
       </thead>
     {arrofobj.arr.map(i=>{
       return(
-      // <tbody className='table-warning border rounded'>
         <tr className='table-info'>
           <td>{i._id}</td>
           <td>{i.Reqtype}</td>
@@ -82,11 +59,12 @@ const UserRequests =() =>{
           <td>{i.Description}</td>
           <td>{i.Status}</td>
         </tr>
-      // </tbody>
       )
     })}
   </Table>
   </div>
+  </div>
+  
   </>
   )
 }

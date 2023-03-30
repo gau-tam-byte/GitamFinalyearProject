@@ -42,8 +42,6 @@ function AgentLogin() {
       console.log('Login successfull!')
       naviagatee("/Serreqs")
     }
-    
-
   }
   return (
     <>
@@ -68,7 +66,6 @@ function AgentLogin() {
           We'll never share your Name with anyone else.
         </Form.Text>
                       </Form.Group>
-
                       <Form.Group
                         className="mb-3"
                         controlId="formBasicPassword"
@@ -79,16 +76,6 @@ function AgentLogin() {
                       <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           <Form.Check type="checkbox" label="Check me In" />
                       </Form.Group>
-                      {/* <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                        <p className="small">
-                          <a className="text-primary" href="#!">
-                            Forgot password?
-                          </a>
-                        </p>
-                      </Form.Group> */}
                       <div className="d-grid">
                         <Button variant="dark" type="submit" onClick={verifyagentdata}>
                           Login
