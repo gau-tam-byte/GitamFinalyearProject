@@ -4,9 +4,6 @@ const bcrypt = require('bcryptjs')
 const agent = require('../models/agentdb')
 const user = require('../models/user')
 const agentauth = require('../middleware/authagent')
-const { route } = require('./users')
-
-
 
 
 router.post('/agentregister',async (req,res,next)=>{
@@ -80,15 +77,18 @@ router.get('/ReqofuserRequests',agentauth,(req,res)=>{
 
 
 
-router.put('/updsta',async(req,res)=>{
-  const id = req.body._id
+router.post('/updsta',async(req,res)=>{
+  const id = req.body.email 
   const st = req.body.Status
+  const des = req.body.descc
+  console.log(st)
+  console.log(id)
+  console.log(des)
 
   try {
-      await user.updateMany({"Requests._id": id},{$set:{"Requests.$.Status":st}},{new:false},(err,doc)=>{
+      await user.updateMany({"Requests._id": id},{$set:{"Requests.$.Status":st}},{new:true},(err,doc)=>{
       if(err){
         console.log(err)
-
       }else{
         res.send(doc)
         console.log("docment updated")

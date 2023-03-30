@@ -5,8 +5,6 @@ const User = require('../models/user')
 
 const auth = require('../middleware/authenticate');
 
-
-
   router.post('/register',async (req, res, next) => { 
 
     try {
@@ -33,8 +31,6 @@ const auth = require('../middleware/authenticate');
       console.log(error)
     }
   });
-
-
 
   router.post('/login',async (req, res, next) => {
   try {
@@ -104,22 +100,9 @@ router.get('/AboutMe',auth,(req,res)=>{
 })
 
 router.get('/UserRequests', auth, (req,res)=>{
-  // try {
-  //   const requests = await User.findOne({_id : req.body._id})   
-  //   if(!requests){
-  //     res.status(400).json({error:"data not came"})
-  //   }else{
-  //     res.send(req.userRequests)
-  //   }
-  //   res.send(requests) 
-  // } catch (error) {
-  //   console.log(error)
-  // }
   console.log("Hello from all requests pages")
   res.send(req.userRequests)
 })
-
-
 
 router.get('/logout',(req,res)=>{
   res.clearCookie('jwtoken',{path: '/'})
