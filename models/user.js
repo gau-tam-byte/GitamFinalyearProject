@@ -23,6 +23,9 @@ const userSchema = new Schema({
     Time: String,
     Description: String,
     Status: String,
+    Agentname : String,
+    AgentProfession : String,
+    AgentPhone: String,
    }]
 }, {
   // 3 
@@ -59,9 +62,9 @@ userSchema.methods.generateAuthToken = async function(){
   }
 }
 
-userSchema.methods.addrequest = async function(name,email,Phone,Reqtype,Date,Time,Description,Status){
+userSchema.methods.addrequest = async function(name,email,Phone,Reqtype,Date,Time,Description,Status,Agentname,AgentProfession,AgentPhone){
   try {
-    this.Requests = this.Requests.concat({name,email,Phone,Reqtype,Date,Time,Description,Status})
+    this.Requests = this.Requests.concat({name,email,Phone,Reqtype,Date,Time,Description,Status,Agentname,AgentProfession ,AgentPhone})
     await this.save()
     return this.Requests
   } catch (error) {
