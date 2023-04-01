@@ -12,6 +12,10 @@ router.post('/agentregister',async (req,res,next)=>{
     if(!name || !Phone ||!NationalID||!Profession||!Password||!cPassword){
       return res.status(401).send("Fill all the Required Data")
     }
+    // const matchalreadyreg = await agent.find({Phone:Phone})
+    // if(matchalreadyreg){
+    //   return res.sendStatus(421).json({error:"Phone is alredy present"})
+    // }
 
     const newagent = await new agent(req.body)
     const agentregister = await newagent.save()
@@ -77,26 +81,30 @@ router.get('/ReqofuserRequests',agentauth,(req,res)=>{
 
 
 
-router.post('/updsta',async(req,res)=>{
-  const id = req.body.email 
-  const st = req.body.Status
-  const des = req.body.descc
-  console.log(st)
-  console.log(id)
-  console.log(des)
+router.put('/updsta',async(req,res)=>{
+
+  const {email, descc, Status,name, Profession, Phone  } = req.body
 
   try {
-      await user.updateMany({"Requests._id": id},{$set:{"Requests.$.Status":st}},{new:true},(err,doc)=>{
+      await user.findOneAndUpdate({_id : email , "Requests.Description":descc },{$set:{"Requests.$.Status":Status,"Requests.$.Agentname":name, "Requests.$.AgentProfession": Profession, "Requests.$.AgentPhone":Phone}},{new:true},(err,doc)=>{
       if(err){
         console.log(err)
+        // return res.sendStatus(400).json({error:"request status not updated!!"})
       }else{
         res.send(doc)
+        console.log(doc)
         console.log("docment updated")
+        // return res.sendStatus(200).json({message:"reuqest status updated successfully!"})
       }
     })
   } catch (error) {
     console.log(error)
   }
+})
+
+router.get('/agentpro',agentauth,(req,res)=>{
+
+  res.send( req.AgentData)
 })
 
 router.get('/agentlogout',(req,res)=>{
