@@ -10,19 +10,21 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import bgg from '../images/co.png'
 import { SiNamecheap, SiStatuspage } from "react-icons/si"
-import { FiMail, FiPhoneCall } from "react-icons/fi";
+import { FiMail, FiPhoneCall, FiPhone, FiStar} from "react-icons/fi";
 import { BiGitPullRequest, BiKey, BiTimeFive } from "react-icons/bi";
 import { BsFillCalendar2DateFill } from "react-icons/bs";
 import { MdDescription } from "react-icons/md";
+import { GrUserWorker } from "react-icons/gr";
+
 import bc from '../images/c.png';
 import bg from '../images/cool-backgroun.png'
 
 const Serreqs = () => {
-  // const navvi = Navigate()
   const naviii = useNavigate()
   const [SerReqsbyuser, setSerReqsbyuser] = useState({ userreqwithadddetails: [] })
-  const [userData, seruserData] = useState({ Profession: "" })
-  const [status, setstatus] = useState({ email: "", descc: "", Status: "" })
+  const [userData, seruserData] = useState({ email: "", descc: "", Status: "" , name:"",Profession: "", Phone:"" })
+  // const [status, setstatus] = useState({ email: "", descc: "", Status: "" ,name:"", Profession:"", Phone:""})
+  // const [agentdatabupload, setagentdatabupload] = useState({name:"",_id:"",Phone:"",Date:"",Time:"",Reqtype:"", Description:"",Status:""})
   // const [updatereqstatus, setupdatereqstatus] = useState({updatependingstatus:[]})
 
   const callpage = async () => {
@@ -57,7 +59,7 @@ const Serreqs = () => {
       })
       const dataagent = await resagent.json()
       console.log(dataagent)
-      seruserData({ ...userData, Profession: dataagent.Profession })
+      seruserData({ ...userData, Profession: dataagent.Profession ,name: dataagent.name, Phone: dataagent.Phone, email:"",descc:"", Status:"" })
       console.log(userData)
     } catch (error) {
       console.log(error)
@@ -88,19 +90,51 @@ const Serreqs = () => {
 
     name = e.target.name
     value = e.target.value
-    setstatus({ ...status, [name]: value })
-    console.log(status)
+    seruserData({ ...userData, [name]: value })
+    console.log(userData)
   }
   const updatestatus = async () => {
 
-    let { email, descc, Status } = status
+    let { email, descc, Status, name, Profession, Phone } = userData
+    // const res =
     await fetch('/updsta', {
-      method: "POST",
-      body: JSON.stringify({ email, descc, Status })
+      method: "PUT",
+      headers:{
+        // Accept: "application/json",
+        "Content-type":"application/json",
+
+      },
+      body: JSON.stringify({ email, descc, Status,name ,Profession,Phone })
+
 
     })
-    console.log(status)
+    // const data = res.json()
+    // if(res.status === 200 || data){
+    //   window.alert("Request Status Updated")
+    // }
+    // else{
+    //   window.alert("Request status not Updated")
+    // }
+    // console.log(status)
   }
+
+  // const uploaddataatoagent = async ()=>{
+  //   const res = await fetch("/uploaddatatadb",{
+  //     method:"POST",
+  //     headers:{
+  //       Accept:"application/json",
+  //       "Content-Type":"application/json",
+  //     },
+  //     body:JSON.stringify({})
+      
+  //   })
+  //   const data = res.json();
+  //   if(!res.status === 200 || data){
+  //     window.alert("stored in your database")
+  //   }else{
+  //     window.alert("not stored in your database")
+  //   }
+  // }
 
   useEffect(() => {
     callpage()
@@ -112,28 +146,40 @@ const Serreqs = () => {
 
   return (
     < >
-      <div style={{ backgroundImage: `url(${bgg})`, backgroundSize: 'cover', height: "auto" }} className="mr-2 ml-2 mb-2 mt-2 rounded">
+      <div style={{ backgroundImage: `url(${bgg})`, backgroundSize: 'cover', height:"auto" }} className="mr-2 ml-2 pb-2 mb-2 rounded">
+      <div className='pt-2 ml-2'>
+      <Link  to='/ReqofuserRequests'>Service Requests Accepted by You</Link>
+      </div>
         {/* <div>This is where all the Service Requested are shown to agents ➡️ Build Under Construction</div> */}
 
-        <div style={{ backgroundImage: `url(${bc})`, backgroundSize: 'cover', height: "auto" }} className="mr-2 ml-2 mb-2 mt-2 pt-1 pb-1 pl-1 pr-1 rounded">
-          <h5 className='ml-2 mr-2'>Your Profession - {userData.Profession} & All Pending Service Request are shown here!</h5>
+        <div style={{ backgroundImage: `url(${bc})`, backgroundSize: 'cover', height: "auto" }} className="mr-2 ml-2 mt-2 mb-2 rounded">
+          <h5 className='ml-2 mr-2 d-flex justify-content-center align-items-center mb-3'>Your Profession - {userData.Profession} & All Pending Service Request are shown here!</h5></div>
 
-          {SerReqsbyuser.userreqwithadddetails.map(i => {
-            return (
+          {SerReqsbyuser.userreqwithadddetails.map(i => { 
+            return (  
               <>
+              {/* <div>{i._id}</div> */}
                 {i.Requests.map((x) => {
-                  const check = x.Reqtype === userData.Profession
+                  const check = x.Reqtype === userData.Profession && x.Status === "Pending....";
+
                   if (check) {
                     return (
                       <>
+
                         {/* className='mr-3 ml-3' */}
-                        <div style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', height: "auto" }} className="pr-2 pl-2 pb-2 mt-3 rounded">
+                        <div style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', height: "auto" }} className="pr-2 pl-2 pb-2 mr-2 ml-2 mt-2 mb-2  rounded">
                           <Form>
                             <Row className="mb-3">
                               <Form.Group as={Col} controlId="formGridName">
-                                <Form.Label >{<SiNamecheap />} Name</Form.Label>
+                                <Form.Label >{<SiNamecheap />} Client Name</Form.Label>
                                 <Form.Control key={x._id} readOnly value={x.name} type="text" />
                               </Form.Group>
+
+                              <Form.Group as={Col} controlId="formGridAddress1">
+                                <Form.Label>{<FiMail />} Email</Form.Label>
+                                <Form.Control key={x._id} readOnly value={x.email} />
+                              </Form.Group>
+                             
 
                               <Form.Group as={Col} controlId="formGridPassword">
                                 <Form.Label className='pt-0.9' >{<FiPhoneCall />} Phone</Form.Label><br></br>
@@ -141,7 +187,6 @@ const Serreqs = () => {
                                 <div key={x._id} className='rounded pb-1 pt-1' style={{ border: "1px solid green" }}><Link to="tel:{x.Phone}">{x.Phone}</Link></div>
                               </Form.Group>
                             </Row>
-
                             <Row className="mb-3">
                               <Form.Group as={Col} controlId="formGridCity">
                                 <Form.Label>{<BsFillCalendar2DateFill />} Date YYYY-MM-DD</Form.Label>
@@ -154,7 +199,7 @@ const Serreqs = () => {
                             </Row>
                             <Row className='mb-3'>
                               <Form.Group as={Col} controlId="formGridAddress1">
-                                <Form.Label>{<BiGitPullRequest />} Request Type</Form.Label>
+                                <Form.Label>{<BiGitPullRequest />} Requested service </Form.Label>
                                 <Form.Control key={x._id} readOnly value={x.Reqtype} />
                               </Form.Group>
                               <Form.Group as={Col} controlId="formGridAddress2">
@@ -169,18 +214,17 @@ const Serreqs = () => {
                               </Form.Group>
                               <Form.Group as={Col} controlId="formGridAddress2">
                                 <Form.Label>{<MdDescription />} Copy Description</Form.Label>
-                                <Form.Control onChange={handleinput} name="descc" />
+                                <Form.Control onChange={handleinput} name="descc" required/>
                               </Form.Group>
                             </Row>
                             <Row className='mb-3'>
-                              <Form.Group as={Col} controlId="formGridAddress1">
-                                <Form.Label>{<FiMail />} Email</Form.Label>
-                                <Form.Control key={x._id} readOnly value={x.email} />
+                            <Form.Group as={Col} controlId="formGridName">
+                                <Form.Label >{<FiStar />} User ID</Form.Label>
+                                <Form.Control key={x._id} readOnly value={i._id} type="text" />
                               </Form.Group>
-
                               <Form.Group as={Col} controlId="formGridAddress2">
-                                <Form.Label>{<FiMail />} Copy Email</Form.Label>
-                                <Form.Control onChange={handleinput} name="email" />
+                                <Form.Label>{<FiStar />} Copy User-ID</Form.Label>
+                                <Form.Control onChange={handleinput} name="email" required />
                               </Form.Group>
                             </Row>
                             <Row className='mb-3'>
@@ -190,10 +234,27 @@ const Serreqs = () => {
                               </Form.Group>
                               <Form.Group as={Col} controlId="formGridAddress2">
                                 <Form.Label>{<SiStatuspage />} Update REQ Status</Form.Label>
-                                <Form.Control onChange={handleinput} name="Status" />
+                                <Form.Control onChange={handleinput} name="Status" required/>
                               </Form.Group>
 
                             </Row>
+                            <Row className='mb-3'>
+
+                            <Form.Group as={Col} controlId="formGridAddress1">
+                                <Form.Label>{<SiNamecheap />} Your name </Form.Label>
+                                <Form.Control  readOnly  defaultValue={userData.name} />
+                              </Form.Group>
+                              <Form.Group as={Col} controlId="formGridAddress2">
+                                <Form.Label>{<GrUserWorker />} Your Profession </Form.Label>
+                                <Form.Control readOnly  defaultValue={userData.Profession} />
+                              </Form.Group>
+                              <Form.Group as={Col} controlId="formGridAddress2">
+                                <Form.Label>{<FiPhone />} Your Phone</Form.Label>
+                                <Form.Control readOnly  defaultValue={userData.Phone} />
+                              </Form.Group>
+
+                            </Row> 
+
 
                             <Button variant="primary" type="submit" onClick={updatestatus}>
                               <Link ></Link>Confirm Accept
@@ -211,7 +272,7 @@ const Serreqs = () => {
               </>
             )
           })}
-        </div>
+        
       </div>
     </>
   )

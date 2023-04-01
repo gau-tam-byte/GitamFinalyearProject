@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import { useEffect } from 'react'
 import bgg from '../images/c.png'
 import bggg from '../images/c.png'
+import { Link } from 'react-router-dom';
 
 
 
@@ -47,10 +48,14 @@ const UserRequests =() =>{
           <th style={{border: "1px solid black"}}>Time</th>
           <th style={{border: "1px solid black"}}>Description</th>
           <th style={{border: "1px solid black"}}>Request Status</th>
+          <th style={{border: "1px solid black"}}>Technician Name</th>
+          <th style={{border: "1px solid black"}}>Technician Profession</th>
+          <th style={{border: "1px solid black"}}>Technician Contact</th>
         </tr>
       </thead>
     {arrofobj.arr.map(i=>{
       return(
+      
         <tr className='table-info'>
           <td>{i._id}</td>
           <td>{i.Reqtype}</td>
@@ -58,6 +63,11 @@ const UserRequests =() =>{
           <td>{i.Time}</td>
           <td>{i.Description}</td>
           <td>{i.Status}</td>
+          <td>{i.Agentname}</td>
+          <td>{i.AgentProfession}</td>
+          <td><Link to="tel:{i.AgentPhone}">{i.AgentPhone}</Link></td>
+          
+          {/* <td>{i.AgentPhone}</td> */}
         </tr>
       )
     })}

@@ -65,13 +65,13 @@ const AgentRegister = ()=> {
                         <Form.Label className='text-centre'>
                           Phone
                         </Form.Label>
-                        <Form.Control type='number' name='Phone' value={agentdata.Phone} onChange={handleinput} placeholder="Phone"></Form.Control>
+                        <Form.Control type='number' name='Phone' value={agentdata.Phone}  onChange={handleinput} placeholder="Phone"></Form.Control>
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
                           National ID
                         </Form.Label>
-                        <Form.Control type="number" name="NationalID" value={agentdata.NationalID} onChange={handleinput} placeholder="Enter National-ID no." />
+                        <Form.Control type="number" name="NationalID" value={agentdata.NationalID}  onChange={handleinput} placeholder="Enter National-ID no." />
                       </Form.Group>
                       <Form.Group className='mb-3' controlId='Phone'>
                         <Form.Label className='text-centre'>

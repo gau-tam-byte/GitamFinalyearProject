@@ -8,12 +8,12 @@ import {SiNamecheap,SiStatuspage} from "react-icons/si"
 import {FiMail, FiPhone} from "react-icons/fi";
 import { BiGitPullRequest,BiTimeFive } from "react-icons/bi";
 import { BsFillCalendar2DateFill } from "react-icons/bs";
-import { MdDescription } from "react-icons/md";
+import { MdDescription ,MdConstruction,MdOutlineContactPhone} from "react-icons/md";
 import { Container, Row, Col } from 'react-bootstrap'
 
 const Reqser = () => {
   const navigates = useNavigate();
-  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:"", Status:"Pending...."})
+  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:"", Status:"Pending....", Agentname:"Assigned If Accepts",AgentProfession:"Assigned If Accepts",AgentPhone:"Tel"})
 
   const callreqserpage = async ()=>{
 
@@ -52,7 +52,7 @@ const Reqser = () => {
 
 const submitform = async()=>{
 
-  const {name,email,Phone,Reqtype,Date,Time,Description,Status} = userData;
+  const {name,email,Phone,Reqtype,Date,Time,Description,Status,Agentname,AgentProfession,AgentPhone} = userData;
 
   const res = await fetch('/Reqser',{
     method:"POST",
@@ -60,21 +60,22 @@ const submitform = async()=>{
       "Content-Type ": "application/json"
     },
     body: JSON.stringify({
-      name,email,Phone,Reqtype,Date,Time,Description,Status
+      name,email,Phone,Reqtype,Date,Time,Description,Status,Agentname,AgentProfession,AgentPhone
     })
     
   })
   const data = await res.json();
-  if(res.status === 200 || data){
-    window.alert("Request Sent")
-    seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:"", Status:""})
-    navigates('/Reqser')
-  }else if(res.status === 422 || !data){
+  if(!res.status === 200 || !data){
     window.alert("plzz Fill the Data")
     console.log("message not sent")
+   
+  }else if(res.status === 422 || data){
+    window.alert("Request not sent")
+    navigates('/Reqser')
   }
   else{
-    window.alert("Request not sent")
+    window.alert("Request Sent")
+    seruserData({...userData, name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"", Description:"", Status:"",Agentname:"",AgentProfession:"",AgentPhone})
     navigates('/Reqser')
   }
 }
@@ -84,7 +85,7 @@ const submitform = async()=>{
   <Container >
   <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-   <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"820px"}} className="pr-2 pl-2 mb-2 rounded">
+   <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"auto"}} className="pr-2 pl-2 pb-2 rounded">
       <h2 className="mb-4 text-white"  >REQUEST Service</h2>
       <form method='POST'>
         <div className="mb-3">
@@ -142,6 +143,24 @@ const submitform = async()=>{
             {<MdDescription/>} Description
           </label>
           <textarea className="form-control" id="message"  name="Description"  autoComplete='off' placeholder='Description should be unique' value={userData.Description} onChange={handleinputs} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label text-white" htmlFor="status">
+            {<SiNamecheap/>} Agent Name 
+          </label>
+          <input className="form-control" id="Agentname"  name="Agentname"  autoComplete='off' value={userData.Agentname} readOnly required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label text-white" htmlFor="status">
+            {<MdConstruction/>} Agent Profession 
+          </label>
+          <input className="form-control" id="AgentProfesssion"  name="AgentProfession"  autoComplete='off' value={userData.AgentProfession} readOnly required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label text-white" htmlFor="status">
+            {<MdOutlineContactPhone/>} Agent Contact 
+          </label>
+          <input className="form-control" id="AgentPhone"  name="AgentPhone"  autoComplete='off' value={userData.AgentPhone} readOnly required />
         </div>
         <button className="btn btn-success" type="submit" onClick={submitform}>
           Send Request

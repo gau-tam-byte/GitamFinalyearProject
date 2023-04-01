@@ -45,7 +45,7 @@ function AgentLogin() {
   }
   return (
     <>
-    <div style={{backgroundColor:"cornflowerblue"}} className=" border rounded mr-2 ml-2  mb-2" >
+    <div style={{backgroundColor:"cornflowerblue", height:"auto"}} className=" border rounded mr-2 ml-2  mb-2" >
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>

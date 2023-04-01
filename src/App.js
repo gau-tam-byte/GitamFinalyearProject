@@ -15,6 +15,7 @@ import AgentRegister from './componenets/AgentRegister';
 import Serreqs from './componenets/Serreqs';
 import AgentLogin from './componenets/AgentLogin';
 import UserRequests from './componenets/UserRequests';
+import AgentPendingRequests from './componenets/AgentPendingRequests';
 import AgentLogout from './componenets/AgentLogout';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
       <Route path='/AgentLogin' element={<AgentLogin/>}></Route>
       <Route path='/AgentLogout' element={<AgentLogout/>}></Route>
       <Route path='/Serreqs' element={<Serreqs/>}></Route>
+      <Route path='/ReqofuserRequests' element={<AgentPendingRequests/>}></Route>
     </Routes>
    
     </>
