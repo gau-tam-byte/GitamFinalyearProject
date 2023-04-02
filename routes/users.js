@@ -75,7 +75,7 @@ router.post('/Reqser',auth, async (req,res)=>{
     
     if ( !name|| !email|| !Phone ||!Reqtype || !Date  || !Time|| !Description || !Status || !Agentname || !AgentProfession || !AgentPhone) {
       
-      return res.status(422).json({error :" PLease Enter all data"})
+      return res.sendStatus(422).json({error :" PLease Enter all data"})
     }
   
     const usercontact = await User.findOne({_id : req.userID})
@@ -83,10 +83,10 @@ router.post('/Reqser',auth, async (req,res)=>{
       const save = await usercontact.addrequest(name,email,Phone,Reqtype,Date,Time,Description, Status,Agentname,AgentProfession,AgentPhone);
       const savedtodb = await usercontact.save()
       if(save||savedtodb){
-        return res.status(200).json({message :"Request Sent Successfully!"})
+        return res.sendStatus(200).json({message :"Request Sent Successfully!"})
       }
     }else{
-      return res.status(421).json({error:"Request Not Sent"})
+      return res.sendStatus(421).json({error:"Request Not Sent"})
     } 
   } catch(error) {
     console.log(console.error("Request Not sent!!????"))

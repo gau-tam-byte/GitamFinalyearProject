@@ -12,7 +12,7 @@ router.post('/agentregister',async (req,res,next)=>{
     if(!name || !Phone ||!NationalID||!Profession||!Password||!cPassword){
       return res.status(401).send("Fill all the Required Data")
     }
-    // const matchalreadyreg = await agent.find({Phone:Phone})
+    // const matchalreadyreg = await agent.findOne({Phone:Phone})
     // if(matchalreadyreg){
     //   return res.sendStatus(421).json({error:"Phone is alredy present"})
     // }
