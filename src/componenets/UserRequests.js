@@ -42,10 +42,10 @@ const UserRequests =() =>{
   <Table responsive='md' striped hover size='md' style={{border: "1px solid black", borderRadius:"10px", overflow: 'hidden',height:'auto'}}>
   <thead className='table-secondary' style={{border: "px solid black"}}> 
         <tr >
-          <th style={{border: "1px solid black"}}>All-Requests with Your ID</th>
+          <th style={{border: "1px solid black"}}>Request ID</th>
           <th style={{border: "1px solid black"}}>Request Type</th>
-          <th style={{border: "1px solid black"}}>Date</th>
-          <th style={{border: "1px solid black"}}>Time</th>
+          <th style={{border: "1px solid black"}}>Date YYYY-MM-DD</th>
+          <th style={{border: "1px solid black"}}>Time 24-hour</th>
           <th style={{border: "1px solid black"}}>Description</th>
           <th style={{border: "1px solid black"}}>Request Status</th>
           <th style={{border: "1px solid black"}}>Technician Name</th>

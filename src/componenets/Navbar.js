@@ -6,9 +6,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {BiLogInCircle,BiLogOut} from "react-icons/bi";
 import {BiRegistered} from 'react-icons/bi';
-import {FaUserSecret, FaUserAlt} from 'react-icons/fa'
+import { useState } from 'react';
+// import {FaUserSecret, FaUserAlt} from 'react-icons/fa'
 // import logo from '../images/images.jpg'
+
 const Navbarr = () => {
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  function checklogin (){
+    setIsLoggedIn(true)
+  }
+
   return (
    <>
        <Navbar style={{border:'3px solid SlateBlue'}} expand="lg" bg="dark" variant="dark" className='rounded mt-2 mr-2 ml-2 mb-2' collapseOnSelect>
@@ -26,24 +34,24 @@ const Navbarr = () => {
             
           </Nav>
           <Nav>
-            <NavDropdown title={ <span className="text-white pl-1"><>Logins <BiLogInCircle/></></span> }  id="collasible-nav-dropdown">
-              <NavDropdown.Item eventKey="3"><Link className="text-decoration-none text-black " to="/Login"><FaUserAlt/> User</Link></NavDropdown.Item>
+             <NavDropdown  title={ <span className="text-white pl-1"><>Logins <BiLogInCircle/></></span> } id="collasible-nav-dropdown">
+              <NavDropdown.Item eventKey="3">{ isLoggedIn ? null : <Link className="text-decoration-none text-black " to="/Login"> User <BiLogInCircle/></Link>}</NavDropdown.Item>
               <NavDropdown.Divider/>
-              <NavDropdown.Item eventKey="4"> <Link className="text-decoration-none text-black" to="/AgentLogin"><FaUserSecret/> Agent</Link></NavDropdown.Item>
+              <NavDropdown.Item eventKey="4"> <Link className="text-decoration-none text-black" to="/AgentLogin"> Agent <BiLogInCircle/></Link></NavDropdown.Item>
             </NavDropdown>
             {/* <Nav.Link ></Nav.Link> */}
             <NavDropdown title={ <span className="text-white pl-1"><>Registers <BiRegistered/></></span> }  id="collasible-nav-dropdown">
-              <NavDropdown.Item eventKey="5"><Link className="text-decoration-none text-black " to="/Register">User Register</Link></NavDropdown.Item>
+              <NavDropdown.Item eventKey="5"><Link className="text-decoration-none text-black " to="/Register">User <BiRegistered/></Link></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item eventKey="6">
-              <Link className="text-decoration-none text-black" to="/AgentRegister">Agent Register</Link></NavDropdown.Item>
+              <Link className="text-decoration-none text-black" to="/AgentRegister">Agent <BiRegistered/></Link></NavDropdown.Item>
               {/* <NavDropdown.Item >
               </NavDropdown.Item> */}
             </NavDropdown>
             <NavDropdown title={ <span className="text-white pl-1"><>Logouts <BiLogOut/></></span> }  id="collasible-nav-dropdown">
-              <NavDropdown.Item eventKey="7"><Link className="text-decoration-none text-black " to="/Logout">User Logout</Link></NavDropdown.Item>
+              <NavDropdown.Item eventKey="7"><Link className="text-decoration-none text-black " to="/Logout">User <BiLogOut/></Link></NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item eventKey="8"><Link className="text-decoration-none text-black" to="/AgentLogout">Agent Logout</Link></NavDropdown.Item>
+              <NavDropdown.Item eventKey="8"><Link className="text-decoration-none text-black" to="/AgentLogout">Agent <BiLogOut/></Link></NavDropdown.Item>
               {/* <NavDropdown.Item >
               </NavDropdown.Item> */}
             </NavDropdown>
@@ -58,6 +66,7 @@ const Navbarr = () => {
       
    </>
   )
+
 }
 
-export default Navbarr
+export default Navbarr 

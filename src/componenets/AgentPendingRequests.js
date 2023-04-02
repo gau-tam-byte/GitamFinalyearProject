@@ -53,7 +53,7 @@ function AgentPendingRequests() {
    }, [])
   return (
     <>
-         <h6 className='d-flex justify-content-center align-items-center mb-3'>Your Profession - {agentdet.aprofes} & Service Requests Accepted By you - {agentdet.agname}, The details of your clients to those you have accepted their service requests are shown below!!</h6>
+         <h6 className='d-flex justify-content-center align-items-center mb-3'>Your Profession - {agentdet.aprofes} & Service Requests Accepted By you - {agentdet.agname}, The details of clients from your accepted service requests are shown below!!</h6>
          
     <>
     

@@ -2,8 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 
 const AgentRegister = ()=> {
+  const navigate = useNavigate() 
   const [agentdata, setagentdata] = useState({name:"",Phone:"",NationalID:"",Profession:"",Password:"",cPassword:""})
 
   const handleinput = (e)=>{
@@ -34,6 +36,7 @@ const AgentRegister = ()=> {
       if(res.status === 201 || data){
         window.alert("Agent Successfully Registered!")
         setagentdata({...agentdata, name:"",Phone:"",NationalID:"",Profession:"",Password:"",cPassword:""})
+        navigate('/AgentLogin')
       }else if(res.status === 400 || !data){
         window.alert("Agent Not Registered!")
       }else{

@@ -77,7 +77,7 @@ const  Register = () =>{
                         <Form.Label className='text-centre'>
                           Phone
                         </Form.Label>
-                        <Form.Control type='number' name='Phone' onChange={handleinputs} value={user.Phone} placeholder="Enter Phone No."></Form.Control>
+                        <Form.Control type='number' name='Phone' onChange={handleinputs} maxLength="11" required value={user.Phone} placeholder="Enter Phone No."></Form.Control>
                       </Form.Group>
                       <Form.Group
                         className="mb-3"

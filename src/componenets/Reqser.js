@@ -13,7 +13,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const Reqser = () => {
   const navigates = useNavigate();
-  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:"", Status:"Pending....", Agentname:"Assigned If Accepts",AgentProfession:"Assigned If Accepts",AgentPhone:"Tel"})
+  const [userData, seruserData] = useState({name:"",email:"",Phone:"",Reqtype:"",Date:"", Time:"",Description:"", Status:"Pending....", Agentname:"Updates on Service Accept",AgentProfession:"Updates on Service Accept",AgentPhone:"Mobile_No."})
 
   const callreqserpage = async ()=>{
 
@@ -86,7 +86,7 @@ const submitform = async()=>{
   <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
    <div style={{backgroundImage:`url(${bg})`,backgroundSize: 'cover', height:"auto"}} className="pr-2 pl-2 pb-2 rounded">
-      <h2 className="mb-4 text-white"  >REQUEST Service</h2>
+      <h2 className="mb-3 text-white"  >REQUEST Service</h2>
       <form method='POST'>
         <div className="mb-3">
           <label className="form-label text-white" htmlFor="name">
@@ -142,7 +142,7 @@ const submitform = async()=>{
           <label className="form-label text-white" htmlFor="message">
             {<MdDescription/>} Description
           </label>
-          <textarea className="form-control" id="message"  name="Description"  autoComplete='off' placeholder='Description should be unique' value={userData.Description} onChange={handleinputs} required />
+          <textarea className="form-control" id="message"  name="Description"  autoComplete='off' placeholder='Description should be Unique, Include Symbol/Numbers If you want!' value={userData.Description} onChange={handleinputs} required />
         </div>
         <div className="mb-3">
           <label className="form-label text-white" htmlFor="status">
