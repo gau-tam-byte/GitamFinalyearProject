@@ -54,7 +54,7 @@ const auth = require('../middleware/authenticate');
     
        
       }else{
-        res.json({message:"user Login Sucessfull"})
+        res.json({message:"User Login Sucessfull"})
       }
    
     }
@@ -75,19 +75,19 @@ router.post('/Reqser',auth, async (req,res)=>{
     
     if ( !name|| !email|| !Phone ||!Reqtype || !Date  || !Time|| !Description || !Status || !Agentname || !AgentProfession || !AgentPhone) {
       
-      return res.sendStatus(422).json({error :" PLease Enter all data"})
+      return res.status(422).json({error :" PLease Enter all data"})
     }
   
     const usercontact = await User.findOne({_id : req.userID})
     if(usercontact){
       const save = await usercontact.addrequest(name,email,Phone,Reqtype,Date,Time,Description, Status,Agentname,AgentProfession,AgentPhone);
       const savedtodb = await usercontact.save()
-      if(save||savedtodb){
-        return res.sendStatus(200).json({message :"Request Sent Successfully!"})
+      if(save || savedtodb){
+        return res.status(200).json({message :"Request Sent Successfully!"})
       }
     }else{
-      return res.sendStatus(421).json({error:"Request Not Sent"})
-    } 
+      return res.status(421).json({error:"Request Not Sent"})
+    }
   } catch(error) {
     console.log(console.error("Request Not sent!!????"))
   }
