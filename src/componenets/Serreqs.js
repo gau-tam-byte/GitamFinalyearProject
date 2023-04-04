@@ -184,7 +184,7 @@ const Serreqs = () => {
                               <Form.Group as={Col} controlId="formGridPassword">
                                 <Form.Label className='pt-0.9' >{<FiPhoneCall />} Phone</Form.Label><br></br>
                                 {/* <Form.Control value={x.Phone} type="tel" /> */}
-                                <div key={x._id} className='rounded pb-1 pt-1' style={{ border: "1px solid green" }}><Link to="tel:{x.Phone}">{x.Phone}</Link></div>
+                                <div key={x._id} className='rounded pb-1 pt-1' style={{ border: "1px solid black", backgroundColor:"whitesmoke" }}><Link to="tel:{x.Phone}">{x.Phone}</Link></div>
                               </Form.Group>
                             </Row>
                             <Row className="mb-3">

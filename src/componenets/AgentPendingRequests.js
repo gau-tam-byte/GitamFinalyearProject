@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row'
+import bg from '../images/coold.png';
+import { Link } from 'react-router-dom';
 
 function AgentPendingRequests() {
   const na = useNavigate()
@@ -53,6 +55,7 @@ function AgentPendingRequests() {
    }, [])
   return (
     <>
+    {/* <div style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', height:"auto" }} className="mr-2 ml-2 pb-2 mb-2 rounded"> */}
          <h6 className='d-flex justify-content-center align-items-center mb-3'>Your Profession - {agentdet.aprofes} & Service Requests Accepted By you - {agentdet.agname}, The details of clients from your accepted service requests are shown below!!</h6>
          
     <>
@@ -68,23 +71,24 @@ function AgentPendingRequests() {
             if(checkagentwithreq){
               return(
                 <>
-                <div className="d-flex justify-content-center align-items-center">
+                <div style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', height:"auto" ,width:"auto" }}  className="flex-direction: row justify-content-space-between align-items-center mr-5 ml-5 pt-3 pr-5 pl-5 rounded">
                 <Form >
               <Row className="mb-4">
-                <Form.Group as={Col} md="6" controlId="validationCustom01">
-                  <Form.Label>Client-ID</Form.Label>
-                  <Form.Control
-                    required
-                    defaultValue={k._id}
-                  />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group>
                 <Form.Group as={Col} md="6" controlId="validationCustom02">
                   <Form.Label>Client Name</Form.Label>
                   <Form.Control
                     required
                     
                     defaultValue={k.name}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group as={Col} md="6" controlId="validationCustom01">
+                  <Form.Label>Client-ID</Form.Label>
+                  <Form.Control
+                    required
+                    defaultValue={k._id}
                   />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
@@ -99,7 +103,9 @@ function AgentPendingRequests() {
                 </Form.Group>
                 <Form.Group as={Col} md="6" controlId="validationCustom04">
                   <Form.Label>Client Phone No.</Form.Label>
-                  <Form.Control type="text" placeholder="State" required defaultValue={k.Phone}/>
+                  {/* <Form.Control typeof="link" placeholder="State" required defaultValue={k.Phone}/> */}
+                  <div key={k._id} className='rounded pb-1 pt-1 ' style={{ border: "1px solid black", backgroundColor:"white" }}><Link to="tel:{x.Phone}">{k.Phone}</Link></div>
+
                   <Form.Control.Feedback type="invalid">
                     Please provide a valid state.
                   </Form.Control.Feedback>
@@ -144,7 +150,7 @@ function AgentPendingRequests() {
               {/* <Button type="submit">Submit form</Button> */}
       </Form>
       </div>
-      <hr></hr>
+      <br></br>
                 
                 </>
               )
@@ -159,6 +165,7 @@ function AgentPendingRequests() {
       })}
      
     </>
+    {/* </div> */}
     </>
    
   )

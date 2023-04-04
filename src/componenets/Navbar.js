@@ -19,7 +19,7 @@ const Navbarr = () => {
 
   return (
    <>
-       <Navbar style={{border:'3px solid SlateBlue'}} expand="lg" bg="dark" variant="dark" className='rounded mt-2 mr-2 ml-2 mb-2' collapseOnSelect>
+       <Navbar style={{border:'3px solid '}} expand="lg" bg="dark" variant="dark" className='rounded mt-2 mr-2 ml-2 mb-2' collapseOnSelect>
         <Container>
         <Navbar.Brand ><Link className="text-decoration-none text-white pl-1" to="/">Online Service Provider</Link></Navbar.Brand>
         <Navbar.Toggle variant="white" aria-expanded="false" aria-controls="responsive-navbar-nav" className='navbar-toggler mr-1'/>

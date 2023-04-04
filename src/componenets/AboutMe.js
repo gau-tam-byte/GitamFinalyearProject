@@ -44,7 +44,7 @@ const AboutMe = () => {
     <Row className="d-flex justify-content-center align-items-center">
       <Col md={8} lg={6} xs={12}>
 
-      <div className="container md-12 mt-12 rounded" style={{border:'1px solid black',backgroundImage:`url(${bgg})`,backgroundSize: 'cover'}}>
+      <div className="container md-12 mt-5 rounded" style={{border:'1px solid black',backgroundImage:`url(${bgg})`,backgroundSize: 'cover'}}>
         <h1 className='pb-2'>{<AiOutlineProfile/>} Profile</h1>
     <form method="GET">
         <div className='row'> 
