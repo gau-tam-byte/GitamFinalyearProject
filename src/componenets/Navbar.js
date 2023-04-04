@@ -12,6 +12,7 @@ import { useState } from 'react';
 
 const Navbarr = () => {
   
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   function checklogin (){
     setIsLoggedIn(true)
