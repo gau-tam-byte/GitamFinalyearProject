@@ -29,7 +29,7 @@ agentdb.pre('save', async function (next){
 
 agentdb.methods.genagentauthtoken = async function(){
   try {
-    let token = await jwtoken.sign({_id: this.id},'jdslkfahsdkfhakhsf32423kjahefkjhasdjlkfhajsdb')
+    let token = await jwtoken.sign({_id: this.id},process.env.SECRETKEYFORAGENT)
     this.Tokens = this.Tokens.concat({token:token})
     await this.save()
     return token

@@ -4,6 +4,8 @@ const cookieparser = require('cookie-parser');
 const session = require('express-session')
 const passport = require('passport');
 require('../Backend/db/dbconnection');
+const dotenv = require('dotenv')
+dotenv.config({path:'./config.env'})
 // const mongoose = require('mongoose');
 // const morgan = require('morgan')
 // const expressHandlerbars = require('express-handlebars')
@@ -29,10 +31,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-
+const port = process.env.PORT
 
 app.use('/',require('./routes/index'))
 app.use('/',require('./routes/users'))
 
 
-app.listen(5000, () => console.log('Server started listening on port 5000!'))
+app.listen(port, () => console.log('Server started listening on port 5000!',{port}))
