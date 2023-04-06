@@ -31,10 +31,17 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-const port = process.env.PORT
+
+const port = process.env.PORT || 5000
 
 app.use('/',require('./routes/index'))
 app.use('/',require('./routes/users'))
 
+if (process.env.NODE_ENV === 'production') {
+  //*Set static folder up in production
+  app.use(express.static('user/build'));
+
+  app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'user', 'build','index.html')));
+}
 
 app.listen(port, () => console.log('Server started listening on port 5000!',{port}))
